@@ -1,9 +1,11 @@
-<!DOCTYPE html>
+
+       <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Happy Birthday Lakshtuu 🎉💖</title>
+
 <style>
     body {
         margin: 0;
@@ -11,11 +13,10 @@
         background: linear-gradient(135deg, #ffdde1, #ee9ca7);
         overflow-x: hidden;
         text-align: center;
-        position: relative;
     }
 
-    h1, h2, p {
-        color: #fff;
+    h1, p {
+        color: white;
         opacity: 0;
         transform: translateY(30px);
         transition: 1s ease;
@@ -43,40 +44,35 @@
 
     /* Gift Box */
     .gift-box {
-        width: 200px;
-        height: 200px;
-        margin: 100px auto;
+        width: 220px;
+        height: 220px;
+        margin: 120px auto;
         background: url('https://cdn-icons-png.flaticon.com/512/892/892692.png') no-repeat center/contain;
         cursor: pointer;
-        transition: transform 0.5s ease;
-        z-index: 10;
-        position: relative;
-    }
-    .gift-box:hover {
-        transform: scale(1.1);
+        transition: 0.4s;
     }
 
-    /* Cake Container */
+    .gift-box:hover { transform: scale(1.1); }
+
+    /* Cake Section */
     .cake-container {
         display: none;
-        margin-top: 30px;
+        margin-top: 40px;
     }
 
     .cake {
-        width: 250px;
+        width: 260px;
         cursor: pointer;
-        transition: transform 1s ease;
+        transition: 1s;
     }
 
-    .cake-cut {
-        transform: rotate(-20deg) scale(1.1);
-    }
+    .cake-cut { transform: rotate(-20deg) scale(1.1); }
 
     .cut-message {
         display: none;
-        font-size: 20px;
-        margin-top: 15px;
-        color: #fff;
+        margin-top: 10px;
+        color: white;
+        font-size: 22px;
     }
 
     /* Messages */
@@ -85,23 +81,19 @@
         margin-top: 30px;
     }
 
-    .messages p {
-        margin: 10px 0;
-    }
-
-    /* Photo Gallery */
     .photo-gallery {
+        margin-top: 30px;
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
-        margin-top: 30px;
     }
+
     .photo-gallery img {
-        width: 180px;
-        height: 180px;
+        width: 170px;
+        height: 170px;
         object-fit: cover;
         margin: 10px;
-        border-radius: 15px;
+        border-radius: 18px;
         opacity: 0;
         transform: translateY(30px);
         transition: 1s ease;
@@ -112,118 +104,106 @@
         position: fixed;
         width: 10px;
         height: 10px;
-        background-color: #ff3e6c;
         top: -10px;
-        z-index: 9999;
         pointer-events: none;
-        opacity: 0.8;
+        opacity: 0.9;
     }
 </style>
 </head>
 <body>
 
-<!-- Gift Box -->
-<div class="gift-box" id="gift" title="Click to open your surprise!"></div>
+<!-- GIFT -->
+<div class="gift-box" id="gift"></div>
 
-<!-- Cake Scene -->
+<!-- CAKE SCENE -->
 <div class="cake-container" id="cakeScene">
-    <img src="d678c3c0-0444-4ba4-a411-6e19d78e8039.png" class="cake" id="cake" alt="Birthday Cake">
-    <div class="cut-message" id="cutMessage">🎂 YAY! The cake is cut! 💖</div>
+    <img src="d678c3c0-0444-4ba4-a411-6e19d78e8039.png" class="cake" id="cake">
+    <div id="cutMessage" class="cut-message">🎉 Cake Cut Successful! 💖</div>
 </div>
 
-<!-- Birthday Messages -->
+<!-- MESSAGES -->
 <div class="messages" id="birthdayMessages">
-    <p>✨ Happy Birthday Lakshtuu Babyy! You are amazing! ✨</p>
-    <p>💗 Be happy and keep smilingg madamjiii. 💗</p>
-    <p>🌸 Your smile just melts meee! 🌸</p>
-    <p>💞 you are the most amazing girl and lovely tooo! 💞</p>
+    <p>🎉 Happy Birthday dear Lakshtuu Babyy! 💕</p>
+    <p>🌸 be happyy always and smilee alwayss. 🌸</p>
+    <p>✨ yourr smilee meltss meee babee ✨</p>
+    <p>💖 you are the prettiest oneee! 💖</p>
 </div>
 
-<!-- Photo Gallery -->
-<div class="photo-gallery">
-    <img src="c470864a-0159-4053-9f3d-a483bc957dfe.jpg" alt="Lakshtuu Photo 1" class="photo">
-    <img src="e3b06caa-31d7-4ddb-9766-201e32b39c80.jpg" alt="Lakshtuu Photo 2" class="photo">
+<!-- PHOTOS -->
+<div class="photo-gallery" id="gallery">
+    <img src="c470864a-0159-4053-9f3d-a483bc957dfe.jpg">
+    <img src="e3b06caa-31d7-4ddb-9766-201e32b39c80.jpg">
+    <img src="d678c3c0-0444-4ba4-a411-6e19d78e8039.png">
 </div>
 
-<!-- Birthday Music -->
-<audio id="birthdaySong" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" preload="auto"></audio>
+<!-- Birthday Song -->
+<audio id="song" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
 
 <script>
+
 /* FLOATING HEARTS */
 setInterval(() => {
     let heart = document.createElement("div");
-    heart.classList.add("heart");
+    heart.className = "heart";
     heart.innerHTML = "❤️";
     heart.style.left = Math.random() * window.innerWidth + "px";
-    heart.style.fontSize = (20 + Math.random() * 20) + "px";
+    heart.style.fontSize = 20 + Math.random()*20 + "px";
     document.body.appendChild(heart);
     setTimeout(() => heart.remove(), 4000);
-}, 400);
+}, 300);
 
-/* Scroll Reveal */
+/* REVEAL ANIMATION */
 function revealOnScroll() {
-    let elements = document.querySelectorAll("h1, h2, p, .photo-gallery img");
-    elements.forEach(el => {
-        let top = el.getBoundingClientRect().top;
-        if (top < window.innerHeight - 50) {
+    document.querySelectorAll("p, .photo-gallery img").forEach(el => {
+        if (el.getBoundingClientRect().top < window.innerHeight - 50) {
             el.classList.add("reveal");
         }
     });
 }
 window.addEventListener("scroll", revealOnScroll);
-window.onload = revealOnScroll;
 
-/* Gift Click: show cake */
-document.getElementById("gift").addEventListener("click", () => {
-    document.getElementById("gift").style.display = "none";
-    document.getElementById("cakeScene").style.display = "block";
-});
+/* GIFT CLICK */
+document.getElementById("gift").onclick = () => {
+    gift.style.display = "none";
+    cakeScene.style.display = "block";
+};
 
-/* Cake Click: cut cake, show messages, confetti & play song */
-document.getElementById("cake").addEventListener("click", () => {
-    let cake = document.getElementById("cake");
-    let msg = document.getElementById("cutMessage");
-    let messages = document.getElementById("birthdayMessages");
-    let song = document.getElementById("birthdaySong");
+/* CAKE CLICK */
+document.getElementById("cake").onclick = () => {
 
-    cake.classList.toggle("cake-cut");
-    msg.style.display = "block";
-
-    // Play song
+    cake.classList.add("cake-cut");
+    cutMessage.style.display = "block";
     song.play();
 
-    // Confetti
-    for (let i = 0; i < 100; i++) {
-        let confetti = document.createElement("div");
-        confetti.classList.add("confetti");
-        confetti.style.left = Math.random() * window.innerWidth + "px";
-        confetti.style.backgroundColor = `hsl(${Math.random()*360}, 100%, 50%)`;
-        document.body.appendChild(confetti);
-        // Animate confetti
+    startConfetti();
+
+    setTimeout(() => {
+        birthdayMessages.style.display = "block";
+        gallery.querySelectorAll("img").forEach((p, i) => {
+            setTimeout(() => p.classList.add("reveal"), i * 200);
+        });
+    }, 1500);
+};
+
+/* CONFETTI FUNCTION */
+function startConfetti() {
+    for (let i = 0; i < 120; i++) {
+        let c = document.createElement("div");
+        c.className = "confetti";
+        c.style.left = Math.random() * window.innerWidth + "px";
+        c.style.backgroundColor = `hsl(${Math.random()*360},100%,50%)`;
+        document.body.appendChild(c);
+
         let fall = setInterval(() => {
-            confetti.style.top = (confetti.offsetTop + Math.random()*5 + 2) + "px";
-            confetti.style.transform = `rotate(${Math.random()*360}deg)`;
-            if (confetti.offsetTop > window.innerHeight) {
-                confetti.remove();
+            c.style.top = (c.offsetTop + 8) + "px";
+            c.style.transform = `rotate(${Math.random()*360}deg)`;
+            if (c.offsetTop > window.innerHeight) {
+                c.remove();
                 clearInterval(fall);
             }
         }, 20);
     }
-
-    setTimeout(() => {
-        msg.style.display = "none";
-        messages.style.display = "block";
-        let allMessages = messages.querySelectorAll("p");
-        allMessages.forEach((p, i) => {
-            setTimeout(() => p.classList.add("reveal"), i*300);
-        });
-        // Reveal photos
-        let photos = document.querySelectorAll(".photo-gallery img");
-        photos.forEach((p, i) => {
-            setTimeout(() => p.classList.add("reveal"), i*300);
-        });
-    }, 1500);
-});
+}
 </script>
 
 </body>
