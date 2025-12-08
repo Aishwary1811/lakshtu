@@ -11,6 +11,7 @@
         background: linear-gradient(135deg, #ffdde1, #ee9ca7);
         overflow-x: hidden;
         text-align: center;
+        position: relative;
     }
 
     h1, h2, p {
@@ -48,6 +49,8 @@
         background: url('https://cdn-icons-png.flaticon.com/512/892/892692.png') no-repeat center/contain;
         cursor: pointer;
         transition: transform 0.5s ease;
+        z-index: 10;
+        position: relative;
     }
     .gift-box:hover {
         transform: scale(1.1);
@@ -60,7 +63,7 @@
     }
 
     .cake {
-        width: 200px;
+        width: 250px;
         cursor: pointer;
         transition: transform 1s ease;
     }
@@ -85,6 +88,36 @@
     .messages p {
         margin: 10px 0;
     }
+
+    /* Photo Gallery */
+    .photo-gallery {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 30px;
+    }
+    .photo-gallery img {
+        width: 180px;
+        height: 180px;
+        object-fit: cover;
+        margin: 10px;
+        border-radius: 15px;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: 1s ease;
+    }
+
+    /* Confetti */
+    .confetti {
+        position: fixed;
+        width: 10px;
+        height: 10px;
+        background-color: #ff3e6c;
+        top: -10px;
+        z-index: 9999;
+        pointer-events: none;
+        opacity: 0.8;
+    }
 </style>
 </head>
 <body>
@@ -94,17 +127,26 @@
 
 <!-- Cake Scene -->
 <div class="cake-container" id="cakeScene">
-    <img src="https://cdn-icons-png.flaticon.com/512/743/743007.png" class="cake" id="cake" alt="Birthday Cake">
+    <img src="d678c3c0-0444-4ba4-a411-6e19d78e8039.png" class="cake" id="cake" alt="Birthday Cake">
     <div class="cut-message" id="cutMessage">🎂 YAY! The cake is cut! 💖</div>
 </div>
 
 <!-- Birthday Messages -->
 <div class="messages" id="birthdayMessages">
-    <p>✨ Happy Birthday Lakshtuu! You are amazing! ✨</p>
-    <p>💗 Wishing you endless happiness and love. 💗</p>
-    <p>🌸 Your smile lights up everyone’s day! 🌸</p>
-    <p>💞 Have a magical year ahead full of surprises! 💞</p>
+    <p>✨ Happy Birthday Lakshtuu Babyy! You are amazing! ✨</p>
+    <p>💗 Be happy and keep smilingg madamjiii. 💗</p>
+    <p>🌸 Your smile just melts meee! 🌸</p>
+    <p>💞 you are the most amazing girl and lovely tooo! 💞</p>
 </div>
+
+<!-- Photo Gallery -->
+<div class="photo-gallery">
+    <img src="c470864a-0159-4053-9f3d-a483bc957dfe.jpg" alt="Lakshtuu Photo 1" class="photo">
+    <img src="e3b06caa-31d7-4ddb-9766-201e32b39c80.jpg" alt="Lakshtuu Photo 2" class="photo">
+</div>
+
+<!-- Birthday Music -->
+<audio id="birthdaySong" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" preload="auto"></audio>
 
 <script>
 /* FLOATING HEARTS */
@@ -120,7 +162,7 @@ setInterval(() => {
 
 /* Scroll Reveal */
 function revealOnScroll() {
-    let elements = document.querySelectorAll("h1, h2, p");
+    let elements = document.querySelectorAll("h1, h2, p, .photo-gallery img");
     elements.forEach(el => {
         let top = el.getBoundingClientRect().top;
         if (top < window.innerHeight - 50) {
@@ -137,20 +179,47 @@ document.getElementById("gift").addEventListener("click", () => {
     document.getElementById("cakeScene").style.display = "block";
 });
 
-/* Cake Click: cut cake and show messages */
+/* Cake Click: cut cake, show messages, confetti & play song */
 document.getElementById("cake").addEventListener("click", () => {
     let cake = document.getElementById("cake");
     let msg = document.getElementById("cutMessage");
     let messages = document.getElementById("birthdayMessages");
+    let song = document.getElementById("birthdaySong");
 
     cake.classList.toggle("cake-cut");
     msg.style.display = "block";
+
+    // Play song
+    song.play();
+
+    // Confetti
+    for (let i = 0; i < 100; i++) {
+        let confetti = document.createElement("div");
+        confetti.classList.add("confetti");
+        confetti.style.left = Math.random() * window.innerWidth + "px";
+        confetti.style.backgroundColor = `hsl(${Math.random()*360}, 100%, 50%)`;
+        document.body.appendChild(confetti);
+        // Animate confetti
+        let fall = setInterval(() => {
+            confetti.style.top = (confetti.offsetTop + Math.random()*5 + 2) + "px";
+            confetti.style.transform = `rotate(${Math.random()*360}deg)`;
+            if (confetti.offsetTop > window.innerHeight) {
+                confetti.remove();
+                clearInterval(fall);
+            }
+        }, 20);
+    }
 
     setTimeout(() => {
         msg.style.display = "none";
         messages.style.display = "block";
         let allMessages = messages.querySelectorAll("p");
         allMessages.forEach((p, i) => {
+            setTimeout(() => p.classList.add("reveal"), i*300);
+        });
+        // Reveal photos
+        let photos = document.querySelectorAll(".photo-gallery img");
+        photos.forEach((p, i) => {
             setTimeout(() => p.classList.add("reveal"), i*300);
         });
     }, 1500);
