@@ -4,24 +4,22 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Happy Birthday Lakshtuu 🎉💖</title>
-
 <style>
     body {
         margin: 0;
         font-family: 'Poppins', sans-serif;
         background: linear-gradient(135deg, #ffdde1, #ee9ca7);
         overflow-x: hidden;
+        text-align: center;
     }
 
     h1, h2, p {
-        text-align: center;
         color: #fff;
         opacity: 0;
         transform: translateY(30px);
         transition: 1s ease;
     }
 
-    /* Scroll Reveal Animation */
     .reveal {
         opacity: 1 !important;
         transform: translateY(0) !important;
@@ -42,45 +40,70 @@
         100% { transform: translateY(-700px) scale(1.8); opacity: 0; }
     }
 
-    /* Cake container */
+    /* Gift Box */
+    .gift-box {
+        width: 200px;
+        height: 200px;
+        margin: 100px auto;
+        background: url('https://cdn-icons-png.flaticon.com/512/892/892692.png') no-repeat center/contain;
+        cursor: pointer;
+        transition: transform 0.5s ease;
+    }
+    .gift-box:hover {
+        transform: scale(1.1);
+    }
+
+    /* Cake Container */
     .cake-container {
-        text-align: center;
-        margin-top: 40px;
+        display: none;
+        margin-top: 30px;
     }
 
     .cake {
-        width: 180px;
-        transition: transform 1s ease;
+        width: 200px;
         cursor: pointer;
+        transition: transform 1s ease;
     }
 
     .cake-cut {
         transform: rotate(-20deg) scale(1.1);
     }
 
-    .message {
-        font-size: 20px;
-        margin-top: 20px;
-        color: #fff;
+    .cut-message {
         display: none;
+        font-size: 20px;
+        margin-top: 15px;
+        color: #fff;
     }
 
+    /* Messages */
+    .messages {
+        display: none;
+        margin-top: 30px;
+    }
+
+    .messages p {
+        margin: 10px 0;
+    }
 </style>
 </head>
 <body>
 
-<h1 id="title">🎉 Happy Birthday Lakshtuu 💖</h1>
-<h2 id="subtitle">You are the most special person ever!</h2>
+<!-- Gift Box -->
+<div class="gift-box" id="gift" title="Click to open your surprise!"></div>
 
-<p id="wish1">✨ May your day be filled with love, joy, and endless happiness! ✨</p>
-<p id="wish2">💗 You deserve all the magic in the world! 💗</p>
-<p id="wish3">🌸 Keep smiling, Lakshtuu! Your happiness lights up everyone’s life. 🌸</p>
-<p id="wish4">💞 Wishing you a year full of wonderful memories and surprises! 💞</p>
-
-<!-- Cake Cutting Animation -->
-<div class="cake-container">
+<!-- Cake Scene -->
+<div class="cake-container" id="cakeScene">
     <img src="https://cdn-icons-png.flaticon.com/512/743/743007.png" class="cake" id="cake" alt="Birthday Cake">
-    <div class="message" id="cutMessage">🎂 YAY! The cake is cut! 💖</div>
+    <div class="cut-message" id="cutMessage">🎂 YAY! The cake is cut! 💖</div>
+</div>
+
+<!-- Birthday Messages -->
+<div class="messages" id="birthdayMessages">
+    <p>✨ Happy Birthday Lakshtuu! You are amazing! ✨</p>
+    <p>💗 Wishing you endless happiness and love. 💗</p>
+    <p>🌸 Your smile lights up everyone’s day! 🌸</p>
+    <p>💞 Have a magical year ahead full of surprises! 💞</p>
 </div>
 
 <script>
@@ -92,14 +115,12 @@ setInterval(() => {
     heart.style.left = Math.random() * window.innerWidth + "px";
     heart.style.fontSize = (20 + Math.random() * 20) + "px";
     document.body.appendChild(heart);
-
     setTimeout(() => heart.remove(), 4000);
 }, 400);
 
-/* SCROLL REVEAL */
+/* Scroll Reveal */
 function revealOnScroll() {
     let elements = document.querySelectorAll("h1, h2, p");
-
     elements.forEach(el => {
         let top = el.getBoundingClientRect().top;
         if (top < window.innerHeight - 50) {
@@ -107,19 +128,32 @@ function revealOnScroll() {
         }
     });
 }
-
 window.addEventListener("scroll", revealOnScroll);
 window.onload = revealOnScroll;
 
-/* CAKE CUTTING ANIMATION */
+/* Gift Click: show cake */
+document.getElementById("gift").addEventListener("click", () => {
+    document.getElementById("gift").style.display = "none";
+    document.getElementById("cakeScene").style.display = "block";
+});
+
+/* Cake Click: cut cake and show messages */
 document.getElementById("cake").addEventListener("click", () => {
     let cake = document.getElementById("cake");
     let msg = document.getElementById("cutMessage");
+    let messages = document.getElementById("birthdayMessages");
 
     cake.classList.toggle("cake-cut");
     msg.style.display = "block";
 
-    setTimeout(() => msg.style.display = "none", 2000);
+    setTimeout(() => {
+        msg.style.display = "none";
+        messages.style.display = "block";
+        let allMessages = messages.querySelectorAll("p");
+        allMessages.forEach((p, i) => {
+            setTimeout(() => p.classList.add("reveal"), i*300);
+        });
+    }, 1500);
 });
 </script>
 
