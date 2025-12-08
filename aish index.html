@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Happy Birthday Lakshtuu 🎉💖</title>
+
+<style>
+  :root{
+    --accent:#ff6b9a;
+    --bg1:#fff1f6;
+    --bg2:#ffe6f0;
+  }
+  body{
+    margin:0;
+    font-family:Inter,Poppins,sans-serif;
+    background:linear-gradient(180deg,var(--bg1),var(--bg2));
+    overflow-x:hidden;
+  }
+
+  /* Hearts */
+  .heart{position:fixed;bottom:-20px;font-size:20px;animation:floatUp 4s linear infinite;opacity:0.9;z-index:9999}
+  @keyframes floatUp{0%{transform:translateY(0)}100%{transform:translateY(-700px);opacity:0}}
+
+  /* Balloons */
+  .balloon{position:fixed;bottom:-200px;width:70px;height:90px;border-radius:60%/70%;opacity:.95;z-index:8000}
+  @keyframes rise{0%{transform:translateY(0)}100%{transform:translateY(-120vh)}}
+
+  /* Sparkle */
+  .sparkle{
+    position:fixed;width:14px;height:14px;border-radius:50%;
+    box-shadow:0 0 20px 8px rgba(255,255,255,0.4);
+    animation:glow 3s ease-in-out infinite;
+    pointer-events:none;z-index:7000;
+  }
+  @keyframes glow{0%,100%{transform:scale(.8)}50%{transform:scale(1.4)}}
+
+  /* Gift */
+  #giftWrap{
+    width:220px;height:220px;margin:50px auto;
+    background:url('https://cdn-icons-png.flaticon.com/512/2541/2541988.png') center/contain no-repeat;
+    cursor:pointer;transition:.3s;
+  }
+  #giftWrap:hover{transform:scale(1.05)}
+
+  /* Message */
+  #messageCard{
+    display:none;
+    max-width:850px;margin:20px auto;padding:25px;
+    background:rgba(255,255,255,0.85);
+    border-radius:18px;box-shadow:0 10px 30px rgba(0,0,0,0.15);
+    font-size:24px;font-weight:600;color:#ff2a7f;
+  }
+  .typed{white-space:pre-wrap;font-size:26px;font-weight:700;text-align:center}
+
+  /* Cake */
+  #cakeScene{text-align:center;display:none;margin-top:20px}
+  #cake{
+    width:260px;border-radius:18px;cursor:pointer;
+    transition:.8s;box-shadow:0 12px 40px rgba(0,0,0,0.2);
+  }
+  .cake-cut{transform:rotate(-12deg) scale(1.05);filter:brightness(1.1)}
+
+  #cutBtn{
+    display:none;margin-top:15px;padding:12px 20px;border:0;
+    background:#ff6b9a;color:white;font-weight:700;
+    border-radius:10px;cursor:pointer;
+  }
+
+  /* Messages */
+  #messagesWrap{display:none;max-width:900px;margin:30px auto}
+  .msg{
+    background:rgba(255,255,255,0.9);
+    padding:14px 20px;margin:10px auto;border-radius:12px;
+    font-size:20px;color:#d63384;font-weight:600;
+    opacity:0;transform:translateY(20px);transition:.7s;
+  }
+  .msg.show{opacity:1;transform:translateY(0)}
+
+  /* Photos */
+  .gallery{display:flex;flex-wrap:wrap;justify-content:center;gap:15px;margin-top:15px}
+  .gallery img{
+    width:220px;height:220px;border-radius:14px;
+    object-fit:cover;box-shadow:0 12px 30px rgba(0,0,0,0.2);
+    opacity:0;transform:translateY(20px);transition:.7s;
+  }
+  .gallery img.show{opacity:1;transform:translateY(0)}
+
+  @media(max-width:600px){
+    #cake{width:190px}
+    .gallery img{width:42vw;height:42vw}
+  }
+</style>
+</head>
+<body>
+
+<!-- Floating Hearts -->
+<script>
+setInterval(()=>{
+  const h=document.createElement("div");
+  h.className="heart";
+  h.innerText="❤️";
+  h.style.left=Math.random()*100+"vw";
+  h.style.fontSize=(18+Math.random()*18)+"px";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),4000);
+},300);
+</script>
+
+<!-- Balloons -->
+<script>
+const colors=["#ffd1e6","#ffecbf","#ffd6f3","#dff9ff","#ffe2f2"];
+for(let i=0;i<6;i++){
+  let b=document.createElement("div");
+  b.className="balloon";
+  b.style.left=(10+Math.random()*80)+"vw";
+  b.style.background=colors[i%colors.length];
+  b.style.animation=`rise ${10+Math.random()*12}s linear ${Math.random()*3}s infinite`;
+  document.body.appendChild(b);
+}
+</script>
+
+<!-- Sparkles -->
+<div class="sparkle" style="left:15%;top:18%"></div>
+<div class="sparkle" style="left:80%;top:10%;animation-duration:2.3s"></div>
+<div class="sparkle" style="left:55%;top:8%;animation-duration:3.4s"></div>
+
+<!-- Gift -->
+<div id="giftWrap"></div>
+
+<!-- Message -->
+<div id="messageCard"><div id="typedText" class="typed"></div></div>
+
+<!-- Cake Scene -->
+<div id="cakeScene">
+  <img id="cake" src="cake.jpg" alt="Birthday Cake">
+  <button id="cutBtn">Cut the Cake 🎂</button>
+</div>
+
+<!-- Final Messages -->
+<div id="messagesWrap">
+  <div class="msg">✨ Happy Birthday, Madam jiiiiiii. ✨</div>
+  <div class="msg">💗 I love you, Lakshtuu so muchh. 💗</div>
+  <div class="msg">🌸 Your smile just meltss mee yarr. 🌸</div>
+  <div class="msg">💞 Thank for for being with mee babee. 💞</div>
+
+  <div class="gallery">
+    <img src="photo1.jpg">
+    <img src="photo2.jpg">
+    <img src="photo3.png">
+  </div>
+</div>
+
+<!-- Music: Until I Found You (copyright-free aesthetic cover) -->
+<audio id="lofiSong" preload="auto">
+  <source src="https://cdn.pixabay.com/download/audio/2022/11/08/audio_4b4a9b726e.mp3?filename=romantic-ambient-124205.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+/* Typing */
+const textLines=[
+"🎁 A special surprise for you, Lakshitaaa...",
+"💖 I love you foreverr.",
+"Ready to see your birthday cake? 🎂"
+];
+let line=0, char=0;
+function type(){
+  if(line<textLines.length){
+    document.getElementById("typedText").innerHTML += textLines[line][char++];
+    if(char===textLines[line].length){
+      line++; char=0;
+      document.getElementById("typedText").innerHTML+="\n\n";
+      setTimeout(type,600);
+    } else setTimeout(type,45);
+  }
+}
+
+/* Elements */
+const gift=document.getElementById("giftWrap");
+const msg=document.getElementById("messageCard");
+const cakeScene=document.getElementById("cakeScene");
+const cake=document.getElementById("cake");
+const cutBtn=document.getElementById("cutBtn");
+const music=document.getElementById("lofiSong");
+
+/* Gift click */
+gift.onclick=()=>{
+  gift.style.display="none";
+  msg.style.display="block";
+  type();
+
+  setTimeout(()=>{
+    cakeScene.style.display="block";
+    cutBtn.style.display="inline-block";
+  },5000);
+
+  music.volume=0.5;
+  music.loop=true;
+  music.play().catch(()=>{});
+};
+
+/* Cake cutting */
+cake.onclick=()=>{
+  cake.classList.add("cake-cut");
+  cutBtn.style.display="none";
+  spawnConfetti();
+
+  setTimeout(()=>{
+    document.getElementById("messagesWrap").style.display="block";
+
+    document.querySelectorAll(".msg").forEach((m,i)=>{
+      setTimeout(()=>m.classList.add("show"),300*i);
+    });
+
+    document.querySelectorAll(".gallery img").forEach((p,i)=>{
+      setTimeout(()=>p.classList.add("show"),300*i+1200);
+    });
+  },700);
+};
+
+/* Confetti */
+function spawnConfetti(){
+  for(let i=0;i<150;i++){
+    let c=document.createElement("div");
+    c.className="confetti";
+    c.style.position="fixed";
+    c.style.width="10px";
+    c.style.height="14px";
+    c.style.background=`hsl(${Math.random()*360},100%,60%)`;
+    c.style.left=Math.random()*100+"vw";
+    c.style.top="-20px";
+    c.style.borderRadius="4px";
+    c.style.opacity=".9";
+    c.style.zIndex="999999";
+    document.body.appendChild(c);
+
+    let fall=setInterval(()=>{
+      c.style.top=(parseFloat(c.style.top)+4)+"px";
+      if(parseFloat(c.style.top)>window.innerHeight){
+        clearInterval(fall); c.remove();
+      }
+    },16);
+  }
+}
+
+/* Make sure audio starts */
+document.addEventListener("click",()=>music.play().catch(()=>{}),{once:true});
+</script>
+</body>
+</html>
