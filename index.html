@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Lakshtu ❤️🎉</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  body {
+    margin:0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+    overflow-x: hidden;
+    text-align:center;
+  }
+  .envelope-container {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    position:relative;
+    flex-direction:column;
+  }
+  .envelope {
+    width:340px;
+    height:220px;
+    background:#ff9bb4;
+    position:relative;
+    border-radius:14px;
+    box-shadow:0 6px 25px rgba(0,0,0,0.25);
+    cursor:pointer;
+    transition:0.4s ease;
+  }
+  .envelope:before {
+    content:'';
+    position:absolute;
+    top:0;
+    left:0;
+    width:0;
+    height:0;
+    border-left:170px solid transparent;
+    border-right:170px solid transparent;
+    border-bottom:130px solid #ff86a8;
+    border-radius:12px;
+  }
+  .letter {
+    width:280px;
+    height:180px;
+    background:white;
+    position:absolute;
+    top:70px;
+    left:50%;
+    transform: translateX(-50%) translateY(50px);
+    border-radius:10px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.18);
+    padding:20px;
+    opacity:0;
+    text-align:center;
+    transition:1s ease;
+    font-size:16px;
+    line-height:1.5;
+  }
+  .letter.show {
+    transform: translateX(-50%) translateY(-60px);
+    opacity:1;
+  }
+  #mainContent {
+    display:none;
+    padding:40px 20px;
+    text-align:center;
+  }
+  h1 { font-size:38px; color:#ff2d63; margin-bottom:10px; }
+  p { font-size:18px; color:#333; }
+  .cake { width:230px; margin:20px auto; cursor:pointer; transition: transform 0.4s ease; }
+  .cake.cut { transform: scale(1.1) rotate(-10deg); }
+  .photo-box { background:white; padding:12px; width:280px; margin:20px auto; border-radius:12px; box-shadow:0 8px 25px rgba(0,0,0,0.25); opacity:0; transform:translateY(20px); transition:0.7s ease; }
+  .photo-box img { width:100%; border-radius:10px; }
+  .photo-caption { margin-top:8px; font-size:16px; color:#ff2d63; font-weight:600; }
+  .photo-box.show { opacity:1; transform:translateY(0); }
+  @keyframes floatHearts { 0% { transform: translateY(100vh) scale(0.5); opacity:0.6; } 100% { transform: translateY(-20vh) scale(1.2); opacity:0; } }
+  .heart { position:fixed; bottom:-10vh; font-size:25px; color:#ff4f7b; animation: floatHearts 6s linear infinite; }
+  .typed { white-space: pre-wrap; }
+  #tapReveal { cursor:pointer; color:#ff2d63; font-weight:bold; margin-top:15px; display:none; }
+</style>
+</head>
+<body>
+<audio id="song" src="until_i_found_you.mp3"></audio>
+<div class="envelope-container" id="envelopeArea">
+  <div class="envelope" onclick="openEnvelope()"></div>
+  <div class="letter" id="letter">
+    <div id="typedText" class="typed"></div>
+  </div>
+</div>
+<div id="mainContent">
+  <h1>Happy Birthday My Love ❤️✨</h1>
+  <p>You make my world beautiful just by being in it 💖</p>
+  <img src="cake.jpg" class="cake" id="cake" onclick="cutCake()" />
+
+  <!-- Photos with captions -->
+  <div class="photo-box" id="photo1"><img src="photo1.jpg" /><div class="photo-caption">Cherished Memory 1 🌸</div></div>
+  <div class="photo-box" id="photo2"><img src="photo2.jpg" /><div class="photo-caption">Cherished Memory 2 💖</div></div>
+  <div class="photo-box" id="photo3"><img src="photo3.png" /><div class="photo-caption">Cherished Memory 3 ✨</div></div>
+
+  <div id="tapReveal" onclick="revealPhotos()">Tap to reveal photos 📸</div>
+</div>
+<script>
+for(let i=0;i<15;i++){
+  let heart=document.createElement('div');
+  heart.className='heart';
+  heart.style.left=Math.random()*100+'vw';
+  heart.style.animationDelay=Math.random()*5+'s';
+  heart.innerHTML='❤';
+  document.body.appendChild(heart);
+}
+const letterLines = [
+  'Dear Lakshtu ❤️,',
+  'Wishing you a day filled with love, laughter, and magic ✨.',
+  'May your year be full of happiness, surprises, and sweet moments 🎁.',
+  'I love you endlessly 💖.',
+  'Open the surprise below and celebrate! 🎉💌'
+];
+let line=0, char=0;
+function typeLetter(){
+  if(line<letterLines.length){
+    document.getElementById('typedText').innerHTML += letterLines[line][char++];
+    if(char === letterLines[line].length){
+      line++; char=0;
+      document.getElementById('typedText').innerHTML += '\n\n';
+      setTimeout(typeLetter,400);
+    } else setTimeout(typeLetter,50);
+  }
+}
+function openEnvelope(){
+  const letter=document.getElementById('letter');
+  letter.classList.add('show');
+  typeLetter();
+  setTimeout(()=>{
+    document.getElementById('envelopeArea').style.display='none';
+    document.getElementById('mainContent').style.display='block';
+    document.getElementById('tapReveal').style.display='block';
+    document.getElementById('song').play();
+  },3000);
+}
+function cutCake(){
+  const cake=document.getElementById('cake');
+  cake.classList.add('cut');
+  setTimeout(()=>{
+    cake.classList.remove('cut');
+    alert('🎂 Cake Cut! Happy Birthday!');
+  },800);
+}
+function revealPhotos(){
+  document.querySelectorAll('.photo-box').forEach((p,i)=>{
+    setTimeout(()=>p.classList.add('show'),i*500);
+  });
+  document.getElementById('tapReveal').style.display='none';
+}
+</script>
+</body>
+</html>
