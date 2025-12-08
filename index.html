@@ -2,104 +2,290 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Happy Birthday Lakshtuu 🎉💖</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Happy Birthday Lakshtuuuu Babyyyyyyyy 🎉💖</title>
 
 <style>
-  :root{
-    --accent:#ff6b9a;
-    --bg1:#fff1f6;
-    --bg2:#ffe6f0;
-  }
-  body{
-    margin:0;
-    font-family:Inter,Poppins,sans-serif;
-    background:linear-gradient(180deg,var(--bg1),var(--bg2));
-    overflow-x:hidden;
-  }
+:root{
+  --accent:#ff6b9a;
+  --bg1:#fff1f6;
+  --bg2:#ffe6f0;
+}
+body{
+  margin:0;
+  font-family: Inter, Poppins, sans-serif;
+  background:linear-gradient(180deg,var(--bg1),var(--bg2));
+  overflow-x:hidden;
+}
 
-  /* Hearts */
-  .heart{position:fixed;bottom:-20px;font-size:20px;animation:floatUp 4s linear infinite;opacity:0.9;z-index:9999}
-  @keyframes floatUp{0%{transform:translateY(0)}100%{transform:translateY(-700px);opacity:0}}
+/* ---------------- HEARTS ---------------- */
+.heart{
+  position:fixed;
+  bottom:-20px;
+  font-size:20px;
+  animation:floatUp 4s linear infinite;
+  opacity:0.9;
+  z-index:9999;
+}
+@keyframes floatUp{
+  0%{transform:translateY(0)}
+  100%{transform:translateY(-700px);opacity:0}
+}
 
-  /* Balloons */
-  .balloon{position:fixed;bottom:-200px;width:70px;height:90px;border-radius:60%/70%;opacity:.95;z-index:8000}
-  @keyframes rise{0%{transform:translateY(0)}100%{transform:translateY(-120vh)}}
+/* ---------------- BALLOONS ---------------- */
+.balloon{
+  position:fixed;
+  bottom:-200px;
+  width:70px;height:90px;
+  border-radius:60%/70%;
+  opacity:.95;
+  z-index:8000
+}
+@keyframes rise{
+  0%{transform:translateY(0)}
+  100%{transform:translateY(-120vh)}
+}
 
-  /* Sparkle */
-  .sparkle{
-    position:fixed;width:14px;height:14px;border-radius:50%;
-    box-shadow:0 0 20px 8px rgba(255,255,255,0.4);
-    animation:glow 3s ease-in-out infinite;
-    pointer-events:none;z-index:7000;
-  }
-  @keyframes glow{0%,100%{transform:scale(.8)}50%{transform:scale(1.4)}}
+/* ---------------- SPARKLES ---------------- */
+.sparkle{
+  position:fixed;
+  width:14px;height:14px;
+  border-radius:50%;
+  box-shadow:0 0 20px 8px rgba(255,255,255,0.4);
+  animation:glow 3s ease-in-out infinite;
+  pointer-events:none;
+  z-index:7000;
+}
+@keyframes glow{
+  0%,100%{transform:scale(.8)}
+  50%{transform:scale(1.4)}
+}
 
-  /* Gift */
-  #giftWrap{
-    width:220px;height:220px;margin:50px auto;
-    background:url('https://cdn-icons-png.flaticon.com/512/2541/2541988.png') center/contain no-repeat;
-    cursor:pointer;transition:.3s;
-  }
-  #giftWrap:hover{transform:scale(1.05)}
+/* ---------------- ENVELOPE ---------------- */
+#envelopeContainer{
+  width:260px;
+  margin:60px auto 20px;
+  position:relative;
+  cursor:pointer;
+  animation: float 3s ease-in-out infinite;
+  text-align:center;
+}
 
-  /* Message */
-  #messageCard{
-    display:none;
-    max-width:850px;margin:20px auto;padding:25px;
-    background:rgba(255,255,255,0.85);
-    border-radius:18px;box-shadow:0 10px 30px rgba(0,0,0,0.15);
-    font-size:24px;font-weight:600;color:#ff2a7f;
-  }
-  .typed{white-space:pre-wrap;font-size:26px;font-weight:700;text-align:center}
+#envelopeGlow{
+  width:260px;
+  height:180px;
+  border-radius:12px;
+  position:absolute;
+  top:0;left:0;
+  filter:blur(18px);
+  background:rgba(255,170,200,0.45);
+  opacity:0.6;
+  z-index:0;
+}
 
-  /* Cake */
-  #cakeScene{text-align:center;display:none;margin-top:20px}
-  #cake{
-    width:260px;border-radius:18px;cursor:pointer;
-    transition:.8s;box-shadow:0 12px 40px rgba(0,0,0,0.2);
-  }
-  .cake-cut{transform:rotate(-12deg) scale(1.05);filter:brightness(1.1)}
+#envelope{
+  width:260px;height:180px;
+  background:url('https://i.imgur.com/0Z6B0wC.png') center/cover no-repeat;
+  position:relative;
+  z-index:1;
+  filter:drop-shadow(0 8px 25px rgba(0,0,0,0.2));
+  transition:transform 0.6s ease, opacity 0.6s;
+}
+#envelope.opened{
+  transform:scale(1.2) rotateX(40deg);
+  opacity:0;
+}
 
-  #cutBtn{
-    display:none;margin-top:15px;padding:12px 20px;border:0;
-    background:#ff6b9a;color:white;font-weight:700;
-    border-radius:10px;cursor:pointer;
-  }
+#tapText{
+  margin-top:12px;
+  font-size:20px;
+  color:#ffdde9;
+  font-weight:bold;
+  animation:glowText 1.8s infinite;
+}
 
-  /* Messages */
-  #messagesWrap{display:none;max-width:900px;margin:30px auto}
-  .msg{
-    background:rgba(255,255,255,0.9);
-    padding:14px 20px;margin:10px auto;border-radius:12px;
-    font-size:20px;color:#d63384;font-weight:600;
-    opacity:0;transform:translateY(20px);transition:.7s;
-  }
-  .msg.show{opacity:1;transform:translateY(0)}
+@keyframes glowText{
+  0%{opacity:0.3}
+  50%{opacity:1}
+  100%{opacity:0.3}
+}
 
-  /* Photos */
-  .gallery{display:flex;flex-wrap:wrap;justify-content:center;gap:15px;margin-top:15px}
-  .gallery img{
-    width:220px;height:220px;border-radius:14px;
-    object-fit:cover;box-shadow:0 12px 30px rgba(0,0,0,0.2);
-    opacity:0;transform:translateY(20px);transition:.7s;
-  }
-  .gallery img.show{opacity:1;transform:translateY(0)}
+@keyframes float{
+  0%{transform:translateY(0)}
+  50%{transform:translateY(-12px)}
+  100%{transform:translateY(0)}
+}
 
-  @media(max-width:600px){
-    #cake{width:190px}
-    .gallery img{width:42vw;height:42vw}
-  }
+#letter{
+  width:200px;height:130px;
+  background:#fff8f8;
+  border-radius:12px;
+  border:2px solid pink;
+  box-shadow:0 12px 25px rgba(0,0,0,0.15);
+  position:absolute;
+  top:80px;left:30px;
+  font-size:28px;
+  font-weight:bold;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  opacity:0;
+  transform:translateY(20px);
+  transition:all 0.6s ease;
+  z-index:0;
+}
+#letter.show{
+  opacity:1;
+  transform:translateY(-80px);
+}
+
+/* ---------------- GIFT ---------------- */
+#giftWrap{
+  width:220px;height:220px;
+  margin:50px auto;
+  background:url('https://cdn-icons-png.flaticon.com/512/2541/2541988.png') center/contain no-repeat;
+  cursor:pointer;
+  transition:.3s;
+  display:none;
+}
+#giftWrap:hover{transform:scale(1.05)}
+
+#messageCard{
+  display:none;
+  max-width:850px;
+  margin:20px auto;
+  padding:25px;
+  background:rgba(255,255,255,0.85);
+  border-radius:18px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.15);
+  font-size:24px;
+  font-weight:600;
+  color:#ff2a7f;
+}
+.typed{
+  white-space:pre-wrap;
+  font-size:26px;
+  font-weight:700;
+  text-align:center;
+}
+
+/* ---------------- CAKE ---------------- */
+#cakeScene{text-align:center;display:none;margin-top:20px}
+#cake{
+  width:260px;border-radius:18px;
+  cursor:pointer;
+  transition:.8s;
+  box-shadow:0 12px 40px rgba(0,0,0,0.2);
+}
+.cake-cut{
+  transform:rotate(-12deg) scale(1.05);
+  filter:brightness(1.1);
+}
+#cutBtn{
+  display:none;
+  margin-top:15px;
+  padding:12px 20px;
+  border:0;
+  background:#ff6b9a;
+  color:white;
+  font-weight:700;
+  border-radius:10px;
+  cursor:pointer;
+}
+
+/* ---------------- FINAL MESSAGES ---------------- */
+#messagesWrap{display:none;max-width:900px;margin:30px auto}
+.msg{
+  background:rgba(255,255,255,0.9);
+  padding:14px 20px;
+  margin:10px auto;
+  border-radius:12px;
+  font-size:20px;
+  color:#d63384;
+  font-weight:600;
+  opacity:0;
+  transform:translateY(20px);
+  transition:.7s;
+}
+.msg.show{opacity:1;transform:translateY(0)}
+
+.gallery{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:15px;
+  margin-top:15px;
+}
+.gallery img{
+  width:220px;height:220px;
+  border-radius:14px;
+  object-fit:cover;
+  box-shadow:0 12px 30px rgba(0,0,0,0.2);
+  opacity:0;
+  transform:translateY(20px);
+  transition:.7s;
+}
+.gallery img.show{opacity:1;transform:translateY(0)}
+
+@media(max-width:600px){
+  #cake{width:190px}
+  .gallery img{width:42vw;height:42vw}
+}
+
+/* ---------- NEON I LOVE YOU ---------- */
+#loveText{
+  font-size:45px;
+  color:#ff4db8;
+  font-weight:bold;
+  text-shadow:0 0 20px #ff4db8, 0 0 40px #ff1a9c;
+  margin-top:20px;
+  display:none;
+  animation:loveGlow 1.8s infinite alternate;
+}
+@keyframes loveGlow{
+  0%{opacity:0.4}
+  100%{opacity:1}
+}
+
+/* ---------- FIREWORKS ---------- */
+.firework{
+  position:fixed;
+  width:6px;height:6px;
+  background:white;
+  border-radius:50%;
+  animation:explode 1.2s ease-out forwards;
+  pointer-events:none;
+}
+@keyframes explode{
+  0%{transform:scale(1);opacity:1}
+  100%{transform:scale(30);opacity:0}
+}
+
+/* ---------- NEON BACKGROUND ---------- */
+.neon-bg{
+  position:fixed;
+  width:100vw;height:100vh;
+  top:0;left:0;
+  pointer-events:none;
+  background:radial-gradient(circle, rgba(255,0,120,0.15), transparent 70%);
+  opacity:0;
+  animation:neonFade 3s forwards;
+}
+@keyframes neonFade{
+  from{opacity:0}
+  to{opacity:1}
+}
 </style>
 </head>
+
 <body>
 
-<!-- Floating Hearts -->
+<!-- Hearts -->
 <script>
 setInterval(()=>{
   const h=document.createElement("div");
   h.className="heart";
-  h.innerText="❤️";
+  h.innerText="❤";
   h.style.left=Math.random()*100+"vw";
   h.style.fontSize=(18+Math.random()*18)+"px";
   document.body.appendChild(h);
@@ -115,7 +301,7 @@ for(let i=0;i<6;i++){
   b.className="balloon";
   b.style.left=(10+Math.random()*80)+"vw";
   b.style.background=colors[i%colors.length];
-  b.style.animation=`rise ${10+Math.random()*12}s linear ${Math.random()*3}s infinite`;
+  b.style.animation=rise ${10+Math.random()*12}s linear ${Math.random()*3}s infinite;
   document.body.appendChild(b);
 }
 </script>
@@ -125,96 +311,116 @@ for(let i=0;i<6;i++){
 <div class="sparkle" style="left:80%;top:10%;animation-duration:2.3s"></div>
 <div class="sparkle" style="left:55%;top:8%;animation-duration:3.4s"></div>
 
+<!-- ENVELOPE -->
+<div id="envelopeContainer">
+  <div id="envelopeGlow"></div>
+  <div id="envelope"></div>
+  <div id="tapText">Tap to Open</div>
+  <div id="letter">💌 For You</div>
+</div>
+
 <!-- Gift -->
 <div id="giftWrap"></div>
 
 <!-- Message -->
 <div id="messageCard"><div id="typedText" class="typed"></div></div>
 
-<!-- Cake Scene -->
+<!-- Cake -->
 <div id="cakeScene">
-  <img id="cake" src="cake.jpg" alt="Birthday Cake">
+  <img id="cake" src="cake.jpg">
   <button id="cutBtn">Cut the Cake 🎂</button>
 </div>
 
 <!-- Final Messages -->
 <div id="messagesWrap">
-  <div class="msg">✨ Happy Birthday, Madam jiiiiiii. ✨</div>
-  <div class="msg">💗 I love you, Lakshtuu so muchh. 💗</div>
-  <div class="msg">🌸 Your smile just meltss mee yarr. 🌸</div>
-  <div class="msg">💞 Thank for for being with mee babee. 💞</div>
+  <div class="msg">✨ Happy Birthdayy Madamm jiiiiii. ✨</div>
+  <div class="msg">💗 I love youuuu forever. 💗</div>
+  <div class="msg">🌸 Be happyy and smilee alwayss . 🌸</div>
+  <div class="msg">💞 Your smilee just meltss me yarrr. 💞</div>
 
   <div class="gallery">
     <img src="photo1.jpg">
     <img src="photo2.jpg">
     <img src="photo3.png">
   </div>
+
+  <div id="loveText">I LOVE YOU ❤</div>
+  <div class="neon-bg"></div>
 </div>
 
-<!-- Music: Until I Found You (copyright-free aesthetic cover) -->
-<audio id="lofiSong" preload="auto">
-  <source src="https://cdn.pixabay.com/download/audio/2022/11/08/audio_4b4a9b726e.mp3?filename=romantic-ambient-124205.mp3" type="audio/mpeg">
-</audio>
+<!-- Music (Until I Found You) -->
+<iframe width="0" height="0"
+  src="https://www.youtube.com/embed/9UMxZofMNbA?autoplay=1&loop=1&playlist=9UMxZofMNbA"
+  frameborder="0"
+  allow="autoplay">
+</iframe>
 
 <script>
-/* Typing */
+/* Envelope Opening */
+const envelope=document.getElementById("envelope");
+const letter=document.getElementById("letter");
+const envelopeBox=document.getElementById("envelopeContainer");
+const giftBox=document.getElementById("giftWrap");
+
+const openSound=new Audio("https://cdn.pixabay.com/audio/2022/03/15/audio_6e3d8f766f.mp3");
+
+envelope.onclick=()=>{
+  openSound.play();
+  envelope.classList.add("opened");
+
+  setTimeout(()=>letter.classList.add("show"),300);
+
+  setTimeout(()=>{
+    envelopeBox.style.display="none";
+    giftBox.style.display="block";
+  },1500);
+};
+
+/* Message Typing */
 const textLines=[
-"🎁 A special surprise for you, Lakshitaaa...",
-"💖 I love you foreverr.",
+"🎁 A special surprise for you, Lakshitaa jii...",
+"💖 I love you foreverr januuuuu.",
 "Ready to see your birthday cake? 🎂"
 ];
-let line=0, char=0;
+let line=0,char=0;
+
 function type(){
   if(line<textLines.length){
-    document.getElementById("typedText").innerHTML += textLines[line][char++];
+    document.getElementById("typedText").innerHTML+=textLines[line][char++];
     if(char===textLines[line].length){
-      line++; char=0;
+      line++;char=0;
       document.getElementById("typedText").innerHTML+="\n\n";
       setTimeout(type,600);
     } else setTimeout(type,45);
   }
 }
 
-/* Elements */
-const gift=document.getElementById("giftWrap");
-const msg=document.getElementById("messageCard");
-const cakeScene=document.getElementById("cakeScene");
-const cake=document.getElementById("cake");
-const cutBtn=document.getElementById("cutBtn");
-const music=document.getElementById("lofiSong");
-
-/* Gift click */
-gift.onclick=()=>{
-  gift.style.display="none";
-  msg.style.display="block";
+/* Gift Click */
+giftBox.onclick=()=>{
+  giftBox.style.display="none";
+  document.getElementById("messageCard").style.display="block";
   type();
-
   setTimeout(()=>{
-    cakeScene.style.display="block";
-    cutBtn.style.display="inline-block";
+    document.getElementById("cakeScene").style.display="block";
+    document.getElementById("cutBtn").style.display="inline-block";
   },5000);
-
-  music.volume=0.5;
-  music.loop=true;
-  music.play().catch(()=>{});
 };
 
-/* Cake cutting */
-cake.onclick=()=>{
-  cake.classList.add("cake-cut");
-  cutBtn.style.display="none";
+/* Cake Cutting */
+document.getElementById("cake").onclick=()=>{
+  document.getElementById("cake").classList.add("cake-cut");
+  document.getElementById("cutBtn").style.display="none";
   spawnConfetti();
 
   setTimeout(()=>{
     document.getElementById("messagesWrap").style.display="block";
-
     document.querySelectorAll(".msg").forEach((m,i)=>{
       setTimeout(()=>m.classList.add("show"),300*i);
     });
-
     document.querySelectorAll(".gallery img").forEach((p,i)=>{
       setTimeout(()=>p.classList.add("show"),300*i+1200);
     });
+    setTimeout(showLoveEffects,2000);
   },700);
 };
 
@@ -222,11 +428,10 @@ cake.onclick=()=>{
 function spawnConfetti(){
   for(let i=0;i<150;i++){
     let c=document.createElement("div");
-    c.className="confetti";
     c.style.position="fixed";
     c.style.width="10px";
     c.style.height="14px";
-    c.style.background=`hsl(${Math.random()*360},100%,60%)`;
+    c.style.background=hsl(${Math.random()*360},100%,60%);
     c.style.left=Math.random()*100+"vw";
     c.style.top="-20px";
     c.style.borderRadius="4px";
@@ -237,14 +442,30 @@ function spawnConfetti(){
     let fall=setInterval(()=>{
       c.style.top=(parseFloat(c.style.top)+4)+"px";
       if(parseFloat(c.style.top)>window.innerHeight){
-        clearInterval(fall); c.remove();
+        clearInterval(fall);c.remove();
       }
     },16);
   }
 }
 
-/* Make sure audio starts */
-document.addEventListener("click",()=>music.play().catch(()=>{}),{once:true});
+/* Love Effects */
+function showLoveEffects(){
+  document.getElementById("loveText").style.display="block";
+  for(let i=0;i<10;i++){
+    setTimeout(createFirework,i*300);
+  }
+}
+
+function createFirework(){
+  let fw=document.createElement("div");
+  fw.classList.add("firework");
+  fw.style.left=Math.random()*100+"vw";
+  fw.style.top=Math.random()*100+"vh";
+  document.body.appendChild(fw);
+  setTimeout(()=>fw.remove(),1200);
+}
+
 </script>
+
 </body>
 </html>
