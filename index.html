@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+
+  
+   <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8" />
@@ -39,7 +41,7 @@ body{
   width:70px;height:90px;
   border-radius:60%/70%;
   opacity:.95;
-  z-index:8000
+  z-index:8000;
 }
 @keyframes rise{
   0%{transform:translateY(0)}
@@ -301,7 +303,7 @@ for(let i=0;i<6;i++){
   b.className="balloon";
   b.style.left=(10+Math.random()*80)+"vw";
   b.style.background=colors[i%colors.length];
-  b.style.animation=rise ${10+Math.random()*12}s linear ${Math.random()*3}s infinite;
+  b.style.animation=`rise ${10+Math.random()*12}s linear ${Math.random()*3}s infinite`;
   document.body.appendChild(b);
 }
 </script>
@@ -348,7 +350,7 @@ for(let i=0;i<6;i++){
   <div class="neon-bg"></div>
 </div>
 
-<!-- Music (Until I Found You) -->
+<!-- Music -->
 <iframe width="0" height="0"
   src="https://www.youtube.com/embed/9UMxZofMNbA?autoplay=1&loop=1&playlist=9UMxZofMNbA"
   frameborder="0"
@@ -431,7 +433,7 @@ function spawnConfetti(){
     c.style.position="fixed";
     c.style.width="10px";
     c.style.height="14px";
-    c.style.background=hsl(${Math.random()*360},100%,60%);
+    c.style.background=`hsl(${Math.random()*360},100%,60%)`;
     c.style.left=Math.random()*100+"vw";
     c.style.top="-20px";
     c.style.borderRadius="4px";
