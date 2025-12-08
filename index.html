@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Lakshtuu 💖🎉</title>
+
+<style>
+/* Global */
+body {
+  margin: 0;
+  padding: 0;
+  background: black;
+  font-family: 'Poppins', sans-serif;
+  overflow-x: hidden;
+  color: white;
+  text-align: center;
+}
+
+/* Gradient heading */
+h1 {
+  font-size: 45px;
+  background: linear-gradient(90deg,#ff4dc4,#ff9aec,#ffd2f8);
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 10px #ff4dc4; }
+  to   { text-shadow: 0 0 25px #ff9aec; }
+}
+
+/* Envelope Screen */
+#startScreen {
+  height: 100vh;
+  display: flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+}
+
+/* Envelope Container */
+.envelope {
+  width: 260px;
+  height: 180px;
+  position: relative;
+  margin: 60px auto 0;
+  cursor: pointer;
+  transition: transform 0.6s ease;
+}
+
+.envelope:hover {
+  transform: scale(1.05);
+}
+
+/* Envelope Image */
+.env-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(255, 0, 140, 0.6);
+}
+
+/* Seal */
+.seal {
+  position: absolute;
+  top: 70px;
+  left: 110px;
+  font-size: 32px;
+  animation: pulse 1.6s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.25); }
+  100% { transform: scale(1); }
+}
+
+/* Letter */
+.letter {
+  width: 240px;
+  height: 160px;
+  background: white;
+  position: absolute;
+  top: 100px;
+  left: 10px;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 25px rgba(255, 0, 150, 0.6);
+  transform: translateY(40px);
+  opacity: 0;
+  transition: all 1s ease;
+}
+
+.letter p {
+  color: black;
+  font-size: 18px;
+  text-align: center;
+  margin-top: 30px;
+  font-weight: 600;
+}
+
+/* Main card */
+#mainCard {
+  display: none;
+  padding: 20px;
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Photos */
+.photo {
+  width: 80%;
+  max-width: 330px;
+  margin: 20px auto;
+  border-radius: 20px;
+  box-shadow: 0 0 20px #ff4dc4;
+  animation: fadeIn 1.5s;
+}
+
+/* Cake */
+#cake {
+  width: 300px;
+  animation: floatCake 3s infinite ease-in-out;
+}
+
+@keyframes floatCake {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-15px); }
+  100% { transform: translateY(0); }
+}
+
+/* Message */
+#message {
+  width: 80%;
+  margin: 25px auto;
+  padding: 18px;
+  background: rgba(255, 90, 220, 0.2);
+  border-radius: 20px;
+  box-shadow: 0 0 25px #ff4dc4;
+  backdrop-filter: blur(10px);
+  line-height: 1.6;
+  font-size: 18px;
+}
+
+/* Floating hearts */
+.heart {
+  position: fixed;
+  bottom: -10px;
+  color: #ff66dd;
+  font-size: 25px;
+  animation: floatUp 5s linear forwards;
+}
+
+@keyframes floatUp {
+  from { transform: translateY(0); opacity: 1; }
+  to   { transform: translateY(-120vh); opacity: 0; }
+}
+
+/* Balloons */
+.balloon {
+  position: fixed;
+  bottom: -150px;
+  width: 60px;
+  animation: balloonFloat 7s linear forwards;
+}
+
+@keyframes balloonFloat {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-140vh); }
+}
+</style>
+</head>
+<body>
+
+<!-- Envelope Opening Screen -->
+<div id="startScreen">
+  <div class="envelope" onclick="openEnvelope()">
+    <div class="envelope-front">
+      <img src="https://i.imgur.com/UT1yYDW.png" class="env-img" />
+      <div class="seal">💌</div>
+    </div>
+
+    <div class="letter">
+      <p>Happy Birthday Lakshtuu ❤️</p>
+    </div>
+  </div>
+</div>
+
+<!-- Main Birthday Card -->
+<div id="mainCard">
+  <h1>Happy Birthday Lakshtuu 💖</h1>
+
+  <img src="photo1.jpg" class="photo">
+
+  <img src="cake.png" id="cake">
+
+  <img src="photo2.jpg" class="photo">
+
+  <img src="photo3.jpg" class="photo">
+
+  <div id="message">
+    My dearest Lakshtuu,<br><br>
+    You are the most beautiful part of every day.  
+    Your smile lights up the world, your laugh melts the heart,  
+    and your presence makes life magical.  
+    Happiest Birthday, my love 💖  
+    I’m so grateful… I found YOU.  
+  </div>
+</div>
+
+<!-- Music -->
+<audio id="bgm" src="until-i-found-you.mp3"></audio>
+
+<script>
+function openEnvelope() {
+  const letter = document.querySelector(".letter");
+  const envelope = document.querySelector(".envelope");
+
+  // Slide out letter
+  letter.style.opacity = "1";
+  letter.style.transform = "translateY(-160px)";
+
+  // Zoom effect
+  envelope.style.transform = "scale(1.1)";
+
+  // After opening animation, reveal card
+  setTimeout(() => {
+    document.getElementById("startScreen").style.display = "none";
+    document.getElementById("mainCard").style.display = "block";
+    document.getElementById("bgm").play();
+
+    setInterval(createHeart, 400);
+    setInterval(createBalloon, 1500);
+  }, 2000);
+}
+
+/* Hearts */
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "💖";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = (20 + Math.random() * 20) + "px";
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 5000);
+}
+
+/* Balloons */
+function createBalloon() {
+  const balloon = document.createElement("img");
+  balloon.src = "https://i.imgur.com/6Yy8YQF.png";
+  balloon.className = "balloon";
+  balloon.style.left = Math.random() * 100 + "vw";
+  balloon.style.width = (50 + Math.random() * 40) + "px";
+  document.body.appendChild(balloon);
+  setTimeout(() => balloon.remove(), 7000);
+}
+</script>
+
+</body>
+</html>
