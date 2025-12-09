@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Happy Birthday Lakshtu ❤️🎂</title>
+
+<style>
+    body {
+        margin: 0;
+        overflow: hidden;
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(135deg, #ffe4ef, #ffd6e8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        flex-direction: column;
+    }
+
+    /* Envelope */
+    #envelope {
+        width: 330px;
+        height: 220px;
+        background: #ff8bb5;
+        border-radius: 12px;
+        box-shadow: 0 12px 40px rgba(255, 0, 100, 0.25);
+        cursor: pointer;
+        position: relative;
+        animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+        0% { transform: translateY(0); }
+        50% { transform: translateY(-12px); }
+        100% { transform: translateY(0); }
+    }
+
+    #flap {
+        width: 100%;
+        height: 50%;
+        background: #ff6c9a;
+        position: absolute;
+        top: 0;
+        clip-path: polygon(0 0, 100% 0, 50% 100%);
+        transition: 0.8s ease;
+    }
+
+    /* Letter */
+    #letter {
+        width: 280px;
+        height: 180px;
+        background: white;
+        border-radius: 8px;
+        padding: 18px;
+        font-size: 15px;
+        line-height: 1.5;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        opacity: 0;
+        transform: translateY(40px);
+        transition: 0.9s ease;
+        white-space: pre-wrap;
+    }
+
+    /* Cake */
+    #cakeSection, #photoSection, #endSection {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    #cakeImg {
+        width: 260px;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(255, 0, 120, 0.2);
+        cursor: pointer;
+        transition: transform 0.4s;
+    }
+
+    #cakeImg:active {
+        transform: scale(1.05);
+    }
+
+    /* Photos */
+    .photoFrame {
+        width: 260px;
+        height: 200px;
+        border-radius: 12px;
+        overflow: hidden;
+        margin: 10px 0;
+        opacity: 0;
+        transform: translateY(40px);
+        transition: 0.8s ease;
+    }
+
+    .photoFrame img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* End */
+    #endText {
+        font-size: 42px;
+        font-weight: 700;
+        color: #ff0066;
+        text-shadow: 0 0 20px rgba(255,0,120,0.3);
+    }
+
+    /* Confetti */
+    .confetti {
+        position: fixed;
+        width: 10px;
+        height: 14px;
+        background: red;
+        top: -20px;
+        animation: fall 3s linear forwards;
+    }
+
+    @keyframes fall {
+        to { transform: translateY(120vh) rotate(360deg); opacity: 0; }
+    }
+</style>
+</head>
+
+<body>
+
+<h2 id="titleText">Tap the envelope 🎀</h2>
+
+<!-- Envelope -->
+<div id="envelope" onclick="openEnvelope()">
+    <div id="flap"></div>
+</div>
+
+<!-- Letter -->
+<div id="letter"></div>
+
+<!-- Cake -->
+<div id="cakeSection">
+    <h2>Make a wish 🎂</h2>
+    <img id="cakeImg" src="cake.jpg" onclick="cutCake()">
+</div>
+
+<!-- Photos -->
+<div id="photoSection">
+    <h2>Our Memories 💖</h2>
+
+    <div class="photoFrame" id="p1"><img src="photo1.jpg"></div>
+    <div class="photoFrame" id="p2"><img src="photo2.jpg"></div>
+    <div class="photoFrame" id="p3"><img src="photo3.png"></div>
+</div>
+
+<!-- Final -->
+<div id="endSection">
+    <div id="endText">I LOVE YOU ❤️</div>
+</div>
+
+<audio id="song" src="until_i_found_you.mp3"></audio>
+
+<script>
+let letterText = 
+"Dear Lakshtu ❤️,\n\n" +
+"Happy Birthday, my love! You are the sweetest blessing of my life.\n" +
+"Thank you for every smile, every moment, every memory.\n\n" +
+"I love you more than you can ever imagine. 💖\n\n" +
+"Tap to continue…";
+
+let showingLetter = false;
+
+function openEnvelope() {
+    document.getElementById("flap").style.transform = "rotateX(180deg)";
+    setTimeout(() => {
+        document.getElementById("letter").style.opacity = "1";
+        document.getElementById("letter").style.transform = "translateY(-20px)";
+        typeLetter();
+        document.getElementById("song").play();
+    }, 700);
+}
+
+let index = 0;
+function typeLetter() {
+    if (index < letterText.length) {
+        document.getElementById("letter").innerHTML += letterText[index++];
+        setTimeout(typeLetter, 35);
+    } else {
+        setTimeout(() => goToCake(), 1500);
+    }
+}
+
+function goToCake() {
+    document.getElementById("envelope").style.display = "none";
+    document.getElementById("letter").style.display = "none";
+    document.getElementById("titleText").innerText = "Make a Wish 🎂";
+    document.getElementById("cakeSection").style.display = "flex";
+}
+
+function cutCake() {
+    makeConfetti();
+    setTimeout(() => {
+        document.getElementById("cakeSection").style.display = "none";
+        revealPhotos();
+    }, 1000);
+}
+
+function revealPhotos() {
+    document.getElementById("titleText").innerText = "Our Memories 💖";
+    document.getElementById("photoSection").style.display = "flex";
+
+    setTimeout(()=>document.getElementById("p1").style.opacity="1",200);
+    setTimeout(()=>document.getElementById("p2").style.opacity="1",600);
+    setTimeout(()=>document.getElementById("p3").style.opacity="1",1000);
+
+    setTimeout(()=>showEnd(), 2500);
+}
+
+function showEnd() {
+    document.getElementById("photoSection").style.display = "none";
+    document.getElementById("titleText").innerText = "";
+    document.getElementById("endSection").style.display = "flex";
+}
+
+function makeConfetti() {
+    for (let i = 0; i < 80; i++) {
+        let c = document.createElement("div");
+        c.classList.add("confetti");
+        c.style.left = Math.random() * 100 + "vw";
+        c.style.background = "hsl(" + Math.random()*360 + ", 90%, 60%)";
+        c.style.animationDuration = (2 + Math.random()*1.5) + "s";
+        document.body.appendChild(c);
+        setTimeout(()=>c.remove(), 3500);
+    }
+}
+</script>
+
+</body>
+</html>
