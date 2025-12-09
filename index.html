@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Lakshtu 💖</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+body{
+  margin:0; padding:0;
+  font-family:'Poppins',sans-serif;
+  background: linear-gradient(135deg,#ffd1e8,#ffc0cb);
+  overflow:hidden;
+  text-align:center; color:#333;
+}
+
+/* Center containers */
+.center {position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:90%; max-width:350px;}
+
+/* Buttons */
+button{
+  margin-top:15px; padding:12px 22px; border:none; border-radius:15px;
+  background:#ff4f9a; color:white; font-weight:600; font-size:15px; cursor:pointer;
+  box-shadow:0 5px 15px rgba(255,79,154,0.3); transition: all 0.3s;
+  animation: pulse 1.5s infinite;
+}
+button:hover {transform:scale(1.1); box-shadow:0 8px 20px rgba(255,79,154,0.5);}
+@keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.05);}}
+
+/* Float animation */
+@keyframes float {0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
+
+/* Intro */
+#introBox{background:#fff0f6; padding:25px 20px; border-radius:20px; font-size:18px; line-height:1.5; box-shadow:0 10px 25px rgba(255,192,203,0.4); transform:scale(0.5); opacity:0; transition:transform 0.6s, opacity 0.6s;}
+#introBox.show{transform:scale(1); opacity:1;}
+
+/* Envelope */
+#envelopeImg{width:230px; cursor:pointer; animation:float 2s ease-in-out infinite;}
+
+/* Letter */
+#letterBox{display:none; background:#fff0f6; padding:25px 20px; border-radius:20px; font-size:16px; line-height:1.6; box-shadow:0 10px 25px rgba(255,192,203,0.4); transform:scale(0.5); opacity:0; transition:transform 0.6s, opacity 0.6s;}
+#letterBox.show{transform:scale(1); opacity:1;}
+
+/* Cake */
+#cakeSection{display:none;}
+#cakeImg{width:260px; border-radius:20px; cursor:pointer; transform:scale(0.5); opacity:0; transition:transform 0.6s, opacity 0.6s; position:relative;}
+#cakeImg.show{transform:scale(1); opacity:1;}
+#cakeCandle{position:absolute; top:-40px; left:50%; transform:translateX(-50%); width:10px; height:40px; background:#fff; border-radius:5px;}
+#candleFlame{position:absolute; top:-20px; left:50%; transform:translateX(-50%); width:12px; height:12px; background:radial-gradient(circle,#fffb00 0%,#ff0000 70%); border-radius:50%; opacity:0; animation:flame 1s infinite alternate;}
+@keyframes flame{0%{opacity:0.7;}100%{opacity:1;}}
+#cakeSlice{position:absolute; width:100px; height:100px; top:50%; left:50%; background:#ffd1e8; border-radius:50%; transform:translate(-50%,-50%) scale(0); opacity:0.8; transition:transform 0.6s, opacity 0.6s;}
+#cakeSlice.show{transform:translate(-50%,-50%) scale(1); opacity:0;}
+
+/* Photos */
+.photo{width:250px; margin-top:12px; border-radius:16px; box-shadow:0 8px 25px rgba(255,105,180,0.3); transform:translateY(30px); opacity:0; transition:transform 0.6s, opacity 0.6s;}
+.photo.show{transform:translateY(0); opacity:1;}
+.photo:hover{transform:scale(1.05);}
+
+/* Gift */
+#giftBox{display:none; width:280px; height:180px; margin:20px auto 0; background:#ffb6c1; border-radius:20px; box-shadow:0 8px 25px rgba(255,105,180,0.5); transform:scale(0.5); opacity:0; transition:transform 0.6s, opacity 0.6s;}
+#giftBox.show{transform:scale(1); opacity:1;}
+#finalMessage{position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-size:20px; font-weight:700; color:white; text-shadow:0 0 10px #fff,0 0 20px #ff4f9a;}
+
+/* Tulip */
+#tulip{display:none; width:50px; margin:20px auto 0; transform:scale(0); opacity:0; transition:transform 0.6s, opacity 0.6s;}
+#tulip.show{transform:scale(1); opacity:1;}
+
+/* Heart Tree */
+#heartTree{position:absolute; bottom:10px; left:50%; transform:translateX(-50%) scale(0); opacity:0; transition: transform 1s ease, opacity 1s ease;}
+#treeTrunk{width:20px; height:100px; background:#8B4513; margin:0 auto; border-radius:10px;}
+.heartLeaf{position:absolute; width:15px; height:15px; background-image:url('heart.png'); background-size:contain; background-repeat:no-repeat; pointer-events:none;}
+</style>
+</head>
+<body>
+
+<audio id="bgm" src="until_i_found_you.mp3" loop></audio>
+
+<div id="screen0" class="center">
+  <div id="introBox" class="show">
+    🎉 It’s your special day!<br><br>
+    Do you want to see your gift? <br><br>
+    <button id="yesBtn">Yes 💖</button>
+  </div>
+</div>
+
+<div id="screen1" class="center" style="display:none;">
+  <img id="envelopeImg" src="envelope.png">
+  <div class="small">Tap to open 💌</div>
+</div>
+
+<div id="screen2" class="center" **style="display:none;"**>
+  <div id="letterBox">
+    My sweet Lakshtu ❤️<br><br>
+    You mean the world to me. Thank you for filling my life with love, happiness and warmth.<br>
+    On your special day, I wish you a year full of joy, soft moments, and beautiful memories.<br><br>
+    Happiest Birthday, my precious one 💕<br>
+    Tap below to see your cake 🎂
+  </div>
+  <button onclick="showCake()">Next ➜</button>
+</div>
+
+<div id="screen3" class="center" **style="display:none;"**>
+  <div id="cakeSection">
+    <div style="position:relative; display:inline-block;">
+      <img id="cakeImg" src="cake.jpg">
+      <div id="cakeCandle"></div>
+      <div id="candleFlame"></div>
+      <div id="cakeSlice"></div>
+    </div>
+    <div class="small">Tap cake to cut it 🎂</div>
+  </div>
+</div>
+
+<div id="screen4" class="center" **style="display:none;"**>
+  <img id="p1" class="photo" src="photo1.jpg">
+  <img id="p2" class="photo" src="photo2.jpg">
+  <img id="p3" class="photo" src="photo3.png">
+</div>
+
+<div id="screen5" class="center" **style="display:none;"**>
+  <div id="giftBox"><div id="finalMessage">🎉 Happy Birthday, Lakshtu! 💖✨</div></div>
+  <img id="tulip" src="tulip.png">
+  <div id="heartTree"><div id="treeTrunk"></div></div>
+</div>
+
+<script>
+const bgm=document.getElementById("bgm");
+const yesBtn=document.getElementById("yesBtn");
+const envelope=document.getElementById("envelopeImg");
+const letter=document.getElementById("letterBox");
+const cakeImg=document.getElementById("cakeImg");
+const screen0=document.getElementById("screen0");
+const screen1=document.getElementById("screen1");
+const screen2=document.getElementById("screen2");
+const screen3=document.getElementById("screen3");
+const screen4=document.getElementById("screen4");
+const screen5=document.getElementById("screen5");
+
+// Intro → Envelope
+yesBtn.onclick=()=>{
+  screen0.style.display="none";
+  screen1.style.display="block";
+  bgm.play().catch(()=>{});
+}
+
+// Envelope → Letter
+envelope.onclick=()=>{
+  screen1.style.display="none";
+  screen2.style.display="block";
+  setTimeout(()=>letter.classList.add("show"),200);
+}
+
+// Show Cake
+function showCake(){
+  screen2.style.display="none";
+  screen3.style.display="block";
+  setTimeout(()=>cakeImg.classList.add("show"),200);
+  document.getElementById("candleFlame").style.opacity=1;
+}
+
+// Cake Cutting → Photos → Gift → Tulip → Tree
+cakeImg.onclick=()=>{
+  const slice=document.getElementById("cakeSlice");
+  slice.classList.add("show");
+  setTimeout(()=>slice.classList.remove("show"),600);
+  setTimeout(()=>{
+    screen3.style.display="none"; // Hide cake screen
+    screen4.style.display="block"; // Show photos screen
+    setTimeout(()=>document.getElementById("p1").classList.add("show"),300);
+    setTimeout(()=>document.getElementById("p2").classList.add("show"),700);
+    setTimeout(()=>document.getElementById("p3").classList.add("show"),1100);
+    setTimeout(showGift,1600);
+  },800);
+}
+
+function showGift(){
+  screen4.style.display="none"; // Hide photos screen
+  screen5.style.display="block"; // Show final screen
+  
+  document.getElementById("giftBox").classList.add("show");
+  setTimeout(()=>document.getElementById("tulip").classList.add("show"),300); // Delay tulip appearance
+  
+  const tree=document.getElementById("heartTree");
+  setTimeout(()=>{tree.style.transform="translateX(-50%) scale(1)"; tree.style.opacity=1;},800);
+
+  // Floating heart leaves
+  setInterval(()=>{
+    const leaf=document.createElement('div'); leaf.classList.add('heartLeaf');
+    // Position leaf randomly within a wider area around the tree for a better effect
+    leaf.style.left=(Math.random()*150 - 50)+'px';
+    leaf.style.bottom='100px';
+    const size=10+Math.random()*12; leaf.style.width=leaf.style.height=size+'px';
+    leaf.style.opacity=0.8; leaf.style.transform=`rotate(${Math.random()*360}deg)`;
+    tree.appendChild(leaf);
+    
+    leaf.animate([{transform:`translateY(0) rotate(${Math.random()*360}deg)`, opacity:0.8},
+                  {transform:`translateY(-150px) rotate(${Math.random()*720}deg)`, opacity:0}],
+                  {duration:4000+Math.random()*2000, iterations:1, easing:'ease-out'});
+    
+    setTimeout(()=>leaf.remove(),6000);
+  },500);
+}
+</script>
+</body>
+</html>
