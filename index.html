@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Happy Birthday Lakshtu ❤️🎉</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root{--accent:#ff6b9a;--gold:#d9b44a;--bg1:#fff6f8;--bg2:#ffeef6}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:Poppins,Inter,system-ui;min-height:100vh;background:linear-gradient(135deg,#fff1f6,#ffe6f0);color:#2b2b2b}
+  .app{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px}
+
+  /* Page layout */
+  .pages{width:100%;max-width:980px;min-height:72vh;position:relative}
+  .page{position:absolute;inset:0;padding:28px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;border-radius:16px;transition:all .7s ease;backdrop-filter:blur(6px)}
+  .page.hidden{opacity:0;transform:translateY(18px);pointer-events:none}
+  .page.visible{opacity:1;transform:translateY(0);pointer-events:auto}
+
+  header{width:100%;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 6px}
+  .nav{display:flex;gap:8px}
+  .nav button{background:transparent;border:2px solid rgba(0,0,0,0.06);padding:8px 12px;border-radius:10px;cursor:pointer}
+
+  /* Elegant gold frames */
+  .frame{position:relative;display:inline-block;padding:14px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.55),rgba(255,255,255,0.35));box-shadow:0 10px 30px rgba(0,0,0,0.12)}
+  .frame::after{content:'';position:absolute;inset:6px;border-radius:8px;pointer-events:none;background:linear-gradient(90deg,transparent,rgba(217,180,74,0.12),transparent)}
+  .frame img{display:block;border-radius:8px;max-width:100%;height:auto;border:3px solid rgba(217,180,74,0.95);box-shadow:0 6px 16px rgba(217,180,74,0.08);}
+  .frame .caption{margin-top:10px;font-weight:600;color:#c82e66}
+
+  /* Polished title */
+  h1.title{font-size:34px;color:#ff2d63;margin:6px 0}
+  p.lead{max-width:720px;font-size:18px;margin:0;color:#5b2a42}
+
+  /* Envelope */
+  .envelope{width:360px;height:240px;border-radius:16px;background:linear-gradient(180deg,#ff92b1,#ff6b9a);display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 18px 45px rgba(235,98,142,0.18)}
+  .letter{width:300px;height:200px;background:white;border-radius:12px;padding:18px;box-shadow:0 10px 30px rgba(0,0,0,0.12);transform:translateY(30px);opacity:0;transition:all .8s}
+  .letter.show{transform:translateY(-40px);opacity:1}
+  .typed{white-space:pre-wrap;font-weight:600;color:#c02e60}
+
+  /* Cake */
+  #cake{width:280px;border-radius:14px;cursor:pointer;transition:transform .5s, box-shadow .4s}
+  #cake.glow{box-shadow:0 18px 50px rgba(217,180,74,0.3),0 0 40px rgba(255,107,154,0.08);transform:scale(1.03)}
+
+  /* Gallery */
+  .gallery{display:flex;flex-wrap:wrap;gap:18px;justify-content:center}
+  .thumb{width:280px}
+  .thumb img{width:100%;height:220px;object-fit:cover;border-radius:8px}
+
+  /* Controls */
+  .controls{display:flex;gap:12px;align-items:center}
+  .btn{background:linear-gradient(180deg,#ff4b86,#ff2d63);border:none;color:white;padding:10px 16px;border-radius:10px;cursor:pointer;font-weight:700}
+  .ghost{background:transparent;border:2px solid rgba(0,0,0,0.06);padding:8px 12px;border-radius:10px}
+
+  /* Balloons */
+  .balloon{position:fixed;bottom:-200px;border-radius:50%/60%;width:80px;height:100px;opacity:0.95;z-index:50;box-shadow:0 8px 20px rgba(0,0,0,0.12)}
+
+  /* Confetti */
+  .confetti{position:fixed;top:-20px;left:0;width:100%;height:0;pointer-events:none}
+  .confetti .c{position:absolute;width:10px;height:14px;border-radius:3px;opacity:0.95}
+
+  /* Final love */
+  #loveText{font-size:48px;color:#ff006a;font-weight:800;text-shadow:0 0 18px rgba(255,45,99,0.2)}
+
+  /* Responsive */
+  @media(max-width:720px){
+    .frame img{height:220px;object-fit:cover}
+    .frame{padding:10px}
+    #cake{width:210px}
+    .thumb{width:44vw}
+  }
+</style>
+</head>
+<body>
+<div class="app">
+  <header>
+    <div style="padding-left:10px"><strong style="font-size:18px;color:#ff2d63">Happy Birthday Lakshtu 💖</strong></div>
+    <div class="nav">
+      <button class="ghost" onclick="showPage(1)">Open</button>
+      <button class="ghost" onclick="showPage(2)">Cake</button>
+      <button class="ghost" onclick="showPage(3)">Photos</button>
+      <button class="ghost" onclick="showPage(4)">Love</button>
+    </div>
+  </header>
+
+  <main class="pages" id="pages">
+    <!-- PAGE 1: Envelope -->
+    <section class="page visible" id="page-1">
+      <div style="text-align:center">
+        <h1 class="title">A little surprise for you 🎀</h1>
+        <p class="lead">Tap the envelope to open your special birthday letter.</p>
+      </div>
+      <div class="envelope frame" id="envelope" onclick="openEnvelope()">
+        <div class="letter" id="letterBox"><div id="typed" class="typed"></div></div>
+      </div>
+      <div style="margin-top:12px"><button class="btn" onclick="openEnvelope()">Open Letter</button></div>
+    </section>
+
+    <!-- PAGE 2: Cake -->
+    <section class="page hidden" id="page-2">
+      <h1 class="title">Happy Birthday My Love ❤️</h1>
+      <p class="lead">Make a wish and click the cake ✨</p>
+      <div class="frame">
+        <img id="cakeImg" src="cake.jpg" alt="Cake" />
+        <div class="caption caption-small">Make a wish 🎂</div>
+      </div>
+      <div style="margin-top:14px;display:flex;gap:12px">
+        <button class="btn" onclick="cutCake()">Cut Cake</button>
+        <button class="ghost" id="musicBtn" onclick="toggleMusic()">Play Music</button>
+      </div>
+    </section>
+
+    <!-- PAGE 3: Photos -->
+    <section class="page hidden" id="page-3">
+      <h1 class="title">Memories 📸</h1>
+      <p class="lead">Our favorite moments framed just for you.</p>
+      <div class="gallery" id="gallery">
+        <div class="frame thumb">
+          <img src="photo1.jpg" alt="Photo 1">
+          <div class="caption">Cherished Memory 1</div>
+        </div>
+        <div class="frame thumb">
+          <img src="photo2.jpg" alt="Photo 2">
+          <div class="caption">Cherished Memory 2</div>
+        </div>
+        <div class="frame thumb">
+          <img src="photo3.png" alt="Photo 3">
+          <div class="caption">Cherished Memory 3</div>
+        </div>
+      </div>
+      <div style="margin-top:18px">
+        <button class="btn" onclick="startSlideshow()">Start Slideshow</button>
+        <button class="ghost" onclick="stopSlideshow()">Stop</button>
+      </div>
+    </section>
+
+    <!-- PAGE 4: Final -->
+    <section class="page hidden" id="page-4">
+      <h1 class="title">Forever & Always 💞</h1>
+      <div id="loveText">I LOVE YOU ❤</div>
+      <p class="lead">Thank you for being the light of my life. Happy birthday, Lakshthu.</p>
+      <div style="margin-top:18px">
+        <button class="btn" onclick="showPage(1)">Back to Start</button>
+      </div>
+    </section>
+  </main>
+
+  <footer style="padding:18px 0;color:#6b2a42;font-weight:600">Made with ❤️</footer>
+</div>
+
+<!-- Audio -->
+<audio id="song" src="until_i_found_you.mp3" loop></audio>
+
+<script>
+// state
+let current=1;
+function showPage(n){
+  document.querySelectorAll('.page').forEach((pg,i)=>{pg.classList.add('hidden');pg.classList.remove('visible')});
+  document.getElementById('page-'+n).classList.remove('hidden');
+  document.getElementById('page-'+n).classList.add('visible');
+  current=n;
+}
+
+// Typing letter
+const lines=[
+  'Dear Lakshthu ❤️,',
+  'On this day I celebrate you — your smile, your heart, your everything.',
+  'May this year bring you the dreams you wish for. I love you 💖',
+  'Tap to continue...'
+];
+let li=0,ci=0;
+function typeNext(){
+  const el=document.getElementById('typed');
+  if(li<lines.length){
+    el.innerHTML += lines[li][ci++];
+    if(ci===lines[li].length){li++;ci=0;el.innerHTML += '
+
+';setTimeout(typeNext,500)}else setTimeout(typeNext,40);
+  }
+}
+
+function openEnvelope(){
+  document.getElementById('letterBox').classList.add('show');
+  typeNext();
+  setTimeout(()=>{showPage(2);},3500);
+}
+
+// Balloons animation (A)
+function spawnBalloons(){
+  const colors=['#ffd1e6','#ffecbf','#ffd6f3','#dff9ff','#ffe2f2'];
+  for(let i=0;i<7;i++){
+    const b=document.createElement('div');
+    b.className='balloon';
+    b.style.left=(5+Math.random()*90)+'vw';
+    b.style.background=colors[i%colors.length];
+    b.style.width=(60+Math.random()*40)+'px';
+    b.style.height=(80+Math.random()*50)+'px';
+    b.style.animation=`rise ${8+Math.random()*6}s linear ${Math.random()*3}s`;
+    b.style.borderRadius='60%/70%';
+    document.body.appendChild(b);
+    // css animation via JS keyframes
+    const anim=b.animate([
+      {transform:'translateY(0) scale(.9)',opacity:1},
+      {transform:'translateY(-120vh) scale(1.05)',opacity:0}
+    ],{duration:(9000+Math.random()*6000),iterations:1,easing:'linear',delay:Math.random()*2000});
+    anim.onfinish=()=>b.remove();
+  }
+}
+setInterval(spawnBalloons,2500);
+
+// Cake glow & confetti (B & D)
+function cutCake(){
+  const cake=document.getElementById('cakeImg');
+  cake.classList.add('glow');
+  spawnConfetti();
+  setTimeout(()=>{
+    cake.classList.remove('glow');
+    showPage(3);
+  },1200);
+}
+
+function spawnConfetti(){
+  const container=document.createElement('div');container.className='confetti';document.body.appendChild(container);
+  for(let i=0;i<120;i++){
+    const c=document.createElement('div');c.className='c';
+    c.style.left=Math.random()*100+'%';
+    c.style.background=`hsl(${Math.random()*360},90%,60%)`;
+    c.style.top='-10px';
+    c.style.opacity=0.95;
+    c.style.transform=`rotate(${Math.random()*360}deg)`;
+    container.appendChild(c);
+    // fall
+    const duration=2000+Math.random()*1800;
+    c.animate([
+      {transform:'translateY(0) rotate(0deg)',opacity:1},
+      {transform:`translateY(${window.innerHeight+200}px) rotate(${Math.random()*720}deg)`,opacity:0}
+    ],{duration,iterations:1,easing:'cubic-bezier(.2,.6,.2,1)'});
+    setTimeout(()=>c.remove(),duration+100);
+  }
+  setTimeout(()=>container.remove(),4200);
+}
+
+// Music control (C)
+const song=document.getElementById('song');
+function toggleMusic(){
+  const btn=document.getElementById('musicBtn');
+  if(song.paused){song.play();btn.textContent='Pause Music'}else{song.pause();btn.textContent='Play Music'}
+}
+
+// Slideshow (E-like)
+let slideInterval=null;
+function startSlideshow(){
+  const imgs=document.querySelectorAll('#gallery img');
+  let i=0;imgs.forEach((im,idx)=>{im.classList.remove('show');im.style.filter='blur(1px)';});
+  imgs[i].classList.add('show');
+  slideInterval=setInterval(()=>{
+    imgs[i].classList.remove('show');i=(i+1)%imgs.length;imgs[i].classList.add('show');
+  },2200);
+}
+function stopSlideshow(){clearInterval(slideInterval)}
+
+// Auto show images when gallery page opens
+const observer=new MutationObserver((muts)=>{
+  muts.forEach(m=>{
+    if(m.attributeName==='class')return;
+    const pg3=document.getElementById('page-3');
+    if(pg3.classList.contains('visible')){
+      document.querySelectorAll('#gallery img').forEach((im,i)=>setTimeout(()=>im.classList.add('show'),i*350));
+    }
+  });
+});
+observer.observe(document.getElementById('page-3'),{attributes:true,childList:true,subtree:false});
+
+// small helper: show first page
+showPage(1);
+</script>
+</body>
+</html>
