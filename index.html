@@ -89,7 +89,7 @@ button:hover {transform:scale(1.1); box-shadow:0 8px 20px rgba(255,79,154,0.5);}
   <div class="small">Tap to open 💌</div>
 </div>
 
-<div id="screen2" class="center" **style="display:none;"**>
+<div id="screen2" class="center" style="display:none;">
   <div id="letterBox">
     My sweet Lakshtu ❤️<br><br>
     You mean the world to me. Thank you for filling my life with love, happiness and warmth.<br>
@@ -100,7 +100,7 @@ button:hover {transform:scale(1.1); box-shadow:0 8px 20px rgba(255,79,154,0.5);}
   <button onclick="showCake()">Next ➜</button>
 </div>
 
-<div id="screen3" class="center" **style="display:none;"**>
+<div id="screen3" class="center" style="display:none;">
   <div id="cakeSection">
     <div style="position:relative; display:inline-block;">
       <img id="cakeImg" src="cake.jpg">
@@ -112,13 +112,13 @@ button:hover {transform:scale(1.1); box-shadow:0 8px 20px rgba(255,79,154,0.5);}
   </div>
 </div>
 
-<div id="screen4" class="center" **style="display:none;"**>
+<div id="screen4" class="center" style="display:none;">
   <img id="p1" class="photo" src="photo1.jpg">
   <img id="p2" class="photo" src="photo2.jpg">
   <img id="p3" class="photo" src="photo3.png">
 </div>
 
-<div id="screen5" class="center" **style="display:none;"**>
+<div id="screen5" class="center" style="display:none;">
   <div id="giftBox"><div id="finalMessage">🎉 Happy Birthday, Lakshtu! 💖✨</div></div>
   <img id="tulip" src="tulip.png">
   <div id="heartTree"><div id="treeTrunk"></div></div>
@@ -130,6 +130,8 @@ const yesBtn=document.getElementById("yesBtn");
 const envelope=document.getElementById("envelopeImg");
 const letter=document.getElementById("letterBox");
 const cakeImg=document.getElementById("cakeImg");
+
+// Get all screen elements
 const screen0=document.getElementById("screen0");
 const screen1=document.getElementById("screen1");
 const screen2=document.getElementById("screen2");
@@ -153,7 +155,7 @@ envelope.onclick=()=>{
 
 // Show Cake
 function showCake(){
-  screen2.style.display="none";
+  screen2.style.display="none"; // FIXED: Hide the Letter screen
   screen3.style.display="block";
   setTimeout(()=>cakeImg.classList.add("show"),200);
   document.getElementById("candleFlame").style.opacity=1;
@@ -165,7 +167,7 @@ cakeImg.onclick=()=>{
   slice.classList.add("show");
   setTimeout(()=>slice.classList.remove("show"),600);
   setTimeout(()=>{
-    screen3.style.display="none"; // Hide cake screen
+    screen3.style.display="none"; // FIXED: Hide the Cake screen before moving on
     screen4.style.display="block"; // Show photos screen
     setTimeout(()=>document.getElementById("p1").classList.add("show"),300);
     setTimeout(()=>document.getElementById("p2").classList.add("show"),700);
@@ -175,11 +177,11 @@ cakeImg.onclick=()=>{
 }
 
 function showGift(){
-  screen4.style.display="none"; // Hide photos screen
-  screen5.style.display="block"; // Show final screen
-  
+  screen4.style.display="none"; // FIXED: Hide the Photos screen
+  screen5.style.display="block"; // Show the final screen
+
   document.getElementById("giftBox").classList.add("show");
-  setTimeout(()=>document.getElementById("tulip").classList.add("show"),300); // Delay tulip appearance
+  setTimeout(()=>document.getElementById("tulip").classList.add("show"),300); 
   
   const tree=document.getElementById("heartTree");
   setTimeout(()=>{tree.style.transform="translateX(-50%) scale(1)"; tree.style.opacity=1;},800);
