@@ -1,206 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Birthday Lakshtu 🎀✨</title>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Happy Birthday Lakshtu 💖</title>
 
 <style>
     body {
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-        background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+        margin:0; padding:0; overflow:hidden;
+        background: linear-gradient(135deg, #ffd1e8, #ffb5d8);
         font-family: "Poppins", sans-serif;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        color: #fff;
+        text-align: center;
     }
 
-    /* Floating hearts */
-    .heart {
-        position: absolute;
-        width: 20px;
-        height: 20px;
-        background: rgba(255, 255, 255, 0.7);
-        clip-path: polygon(50% 0%, 61% 18%, 82% 18%, 100% 34%, 
-                           100% 57%, 50% 100%, 0% 57%, 0% 34%, 
-                           18% 18%, 39% 18%);
-        animation: floatUp 6s linear infinite;
-    }
-
-    @keyframes floatUp {
-        0% { transform: translateY(0) scale(1); opacity: 1; }
-        100% { transform: translateY(-800px) scale(1.5); opacity: 0; }
+    /* Center all content */
+    .center {
+        position:absolute;
+        top:50%; left:50%;
+        transform:translate(-50%, -50%);
+        width:90%;
+        max-width:320px;
     }
 
     /* Envelope */
-    .envelope-container {
-        text-align: center;
-        animation: fadeIn 2s ease-out;
+    #envelopeImg {
+        width:230px;
+        cursor:pointer;
+        animation: float 2s ease-in-out infinite;
+    }
+    @keyframes float {
+        0%,100% { transform: translateY(0); }
+        50% { transform: translateY(-12px); }
     }
 
-    @keyframes fadeIn {
-        from { opacity: 0; transform: scale(0.9); }
-        to { opacity: 1; transform: scale(1); }
-    }
-
-    .envelope {
-        width: 260px;
-        cursor: pointer;
-        transition: transform 0.4s ease;
-    }
-
-    .envelope:hover {
-        transform: scale(1.08);
-    }
-
-    /* Hidden sections */
-    #letter, #photos, #cake-section {
-        display: none;
-        animation: fadeIn 1.3s ease;
-        text-align: center;
-        padding: 20px;
-    }
-
-    /* Letter box */
-    .letter-box {
-        background: rgba(255, 255, 255, 0.85);
-        color: #444;
-        padding: 22px;
-        width: 300px;
-        border-radius: 15px;
-        margin: auto;
-        font-size: 15px;
-        line-height: 1.5;
-        box-shadow: 0px 0px 30px rgba(255, 255, 255, 0.6);
-    }
-
-    /* Photos */
-    .img-card {
-        width: 240px;
-        height: 240px;
-        border-radius: 15px;
-        object-fit: cover;
-        display: none;
-        animation: fadeIn 1s ease;
-        box-shadow: 0px 0px 20px rgba(255,255,255,0.6);
-    }
-
-    .tap-text {
-        font-size: 14px;
-        margin-top: 8px;
-        opacity: 0.9;
+    /* Letter */
+    #letterBox {
+        display:none;
+        background:white;
+        padding:20px;
+        border-radius:14px;
+        font-size:15px;
+        color:#444;
+        line-height:1.5;
+        box-shadow:0 0 25px rgba(255,255,255,0.8);
     }
 
     /* Cake */
-    .cake-img {
-        width: 260px;
-        border-radius: 20px;
-        display: none;
-        box-shadow: 0px 0px 25px rgba(255,255,255,0.7);
+    #cakeSection {
+        display:none;
+    }
+    #cakeImg {
+        width:260px;
+        border-radius:16px;
+        box-shadow:0 5px 20px rgba(0,0,0,0.25);
+        cursor:pointer;
     }
 
-    .title {
-        font-size: 26px;
-        margin-bottom: 10px;
-        text-shadow: 0px 0px 10px white;
+    /* Photos */
+    .photo {
+        display:none;
+        width:250px;
+        margin-top:12px;
+        border-radius:16px;
+        box-shadow:0 5px 18px rgba(0,0,0,0.25);
+    }
+
+    button {
+        margin-top:15px;
+        padding:10px 18px;
+        border:none;
+        border-radius:10px;
+        background:#ff4f9a;
+        color:white;
+        font-weight:bold;
+        cursor:pointer;
+    }
+
+    .small {
+        font-size:14px;
+        color:white;
+        opacity:0.9;
+        margin-top:8px;
     }
 </style>
 </head>
+
 <body>
 
-<!-- Floating hearts -->
-<script>
-for (let i = 0; i < 20; i++) {
-    let h = document.createElement("div");
-    h.className = "heart";
-    h.style.left = Math.random() * 100 + "vw";
-    h.style.animationDelay = Math.random() * 4 + "s";
-    document.body.appendChild(h);
-}
-</script>
-
 <!-- Background Music -->
-<audio id="bg-music" src="until_i_found_you.mp3.mp3" autoplay loop></audio>
+<audio id="bgm" src="until_i_found_you.mp3" loop></audio>
 
-<!-- Envelope -->
-<div class="envelope-container" id="env-container">
-    <img class="envelope" src="envelope.png" onclick="openEnvelope()">
-    <div style="margin-top:10px; font-size:18px;">Tap to open 💌</div>
+<!-- Envelope Screen -->
+<div id="screen1" class="center">
+    <img id="envelopeImg" src="envelope.png">
+    <div class="small">Tap to open 💌</div>
 </div>
 
-<!-- Letter -->
-<div id="letter">
-    <div class="title">💖 A Letter for You 💖</div>
-
-    <div class="letter-box">
-        My dearest Lakshtu 💕<br><br>
-        You are the sweetest part of my world.  
-        Thank you for bringing so much happiness  
-        and warmth into my life.  
-        On your special day, I just want to remind you  
-        that you mean more to me than words can ever express.  
-        I hope this year gives you endless love,  
-        beautiful moments,  
-        and every happiness you deserve.  
+<!-- Letter Screen -->
+<div id="screen2" class="center">
+    <div id="letterBox">
+        My sweet Lakshtu ❤️<br><br>
+        You mean the world to me.  
+        Thank you for filling my life with love, happiness and warmth.  
+        On your special day, I wish you a year full of joy,  
+        soft moments, and beautiful memories.  
         <br><br>
-        Happy Birthday, my precious one 🎀✨  
-        With all my love… ❤️
+        Happiest Birthday, my precious one 💕<br>
+        Tap below to continue 🎀
     </div>
-
-    <br><button onclick="showPhotos()" style="padding:10px 18px; border:0; border-radius:10px; background:white; color:#e4778a; font-weight:bold;">Next ➜</button>
+    <button onclick="showCake()">Next ➜</button>
 </div>
 
-<!-- Photos -->
-<div id="photos">
-    <div class="title">✨ Our Beautiful Moments ✨</div>
-
-    <img id="p1" class="img-card" src="photo1.jpg" onclick="reveal(1)">
-    <div id="t1" class="tap-text">Tap to Reveal 💗</div>
-
-    <img id="p2" class="img-card" src="photo2.jpg" onclick="reveal(2)">
-    <div id="t2" class="tap-text">Tap to Reveal 💗</div>
-
-    <img id="p3" class="img-card" src="photo3.png" onclick="reveal(3)">
-    <div id="t3" class="tap-text">Tap to Reveal 💗</div>
-
-    <br><button onclick="showCake()" style="padding:10px 18px; border:0; border-radius:10px; background:white; color:#e4778a; font-weight:bold;">Next ➜</button>
+<!-- Cake Screen -->
+<div id="screen3" class="center">
+    <div id="cakeSection">
+        <img id="cakeImg" src="cake.jpg">
+        <div class="small">Tap cake to reveal photos 🎂</div>
+    </div>
 </div>
 
-<!-- Cake Section -->
-<div id="cake-section">
-    <div class="title">🎂 Cake Cutting Time 🎂</div>
-    <img class="cake-img" id="cake" src="cake.jpg">
-    <div style="margin-top:12px; font-size:18px;">Happiest Birthday, my love 💕</div>
+<!-- Photos Screen -->
+<div id="screen4" class="center">
+    <img id="p1" class="photo" src="photo1.jpg">
+    <img id="p2" class="photo" src="photo2.jpg">
+    <img id="p3" class="photo" src="photo3.png">
 </div>
 
 <script>
-function openEnvelope() {
-    document.getElementById("env-container").style.display = "none";
-    document.getElementById("letter").style.display = "block";
+const bgm = document.getElementById("bgm");
+
+document.getElementById("envelopeImg").onclick = () => {
+    document.getElementById("screen1").style.display = "none";
+    document.getElementById("screen2").style.display = "block";
+
+    // Start music (will work because user clicked)
+    bgm.play().catch(()=>{});
+};
+
+function showCake(){
+    document.getElementById("screen2").style.display="none";
+    document.getElementById("cakeSection").style.display="block";
+    document.getElementById("screen3").style.display="block";
 }
 
-function showPhotos() {
-    document.getElementById("letter").style.display = "none";
-    document.getElementById("photos").style.display = "block";
+document.getElementById("cakeImg").onclick = () => {
+    document.getElementById("screen3").style.display="none";
+    document.getElementById("screen4").style.display="block";
 
-    document.getElementById("p1").style.display = "block";
-    document.getElementById("p2").style.display = "block";
-    document.getElementById("p3").style.display = "block";
-}
-
-function reveal(n) {
-    document.getElementById("t" + n).innerHTML = "So Beautiful 💞";
-}
-
-function showCake() {
-    document.getElementById("photos").style.display = "none";
-    document.getElementById("cake-section").style.display = "block";
-    document.getElementById("cake").style.display = "block";
-}
+    // reveal photos one by one
+    setTimeout(()=>document.getElementById("p1").style.display="block", 300);
+    setTimeout(()=>document.getElementById("p2").style.display="block", 700);
+    setTimeout(()=>document.getElementById("p3").style.display="block", 1100);
+};
 </script>
 
 </body>
